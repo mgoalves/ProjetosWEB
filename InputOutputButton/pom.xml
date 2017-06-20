@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>br.inf.ufg</groupId>
-	<artifactId>InputOutputButton</artifactId>
+	<artifactId>PrimeiroProjetoPrimeFaces2</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>war</packaging>
 
@@ -10,9 +10,9 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<failOnMissingWebXml>false</failOnMissingWebXml>
-		<project.reporting.outputEncoding>utf-8</project.reporting.outputEncoding>
+		<!--  <project.reporting.outputEncoding>utf-8</project.reporting.outputEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.target>1.8</maven.compiler.target> -->
 	</properties>
 
 	<dependencies>
@@ -59,12 +59,8 @@
 					<port>8080</port>
 				</configuration>
 			</plugin>
-			
-			
-           
 		</plugins>
 	</build>
-	
 
 </project>
 
