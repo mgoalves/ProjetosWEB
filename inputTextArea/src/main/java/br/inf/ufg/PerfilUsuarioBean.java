@@ -1,6 +1,8 @@
 package br.inf.ufg;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -8,42 +10,51 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-
 @ManagedBean
 @RequestScoped
 @ViewScoped
-public class PerfilUsuarioBean implements Serializable{
+public class PerfilUsuarioBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
-	private String login;
-	private String senha;
-	
-	
-	public void atualizar () {
-		
-		System.out.println("Login: " + this.login + "\nSenha: " + this.senha);
-		
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Login Realizado com sucesso."));	
-		
+
+	private String nome;
+	private String descricao;
+
+	public void atualizar() {
+
+		System.out.println("Nome: " + this.nome + "\n\nDescrição: " + this.descricao);
+
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Login Realizado com sucesso."));
+
 	}
-	
-	
-	
+//*	
+	public List<String> completarTexto(String consulta) {
+		List<String> resultados = new ArrayList<String>();
+		
+		if (consulta.startsWith("c") || consulta.startsWith("C")) {
+			resultados.add("Cirurgião");
+			resultados.add("Clinico");
+
+		}
+		
+		return resultados;
+	}
+//*/
 	//Getters and Setters
-	public String getLogin() {
-		return login;
+	public String getNome() {
+		return nome;
 	}
-	public void setLogin(String login) {
-		this.login = login;
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
-	public String getSenha() {
-		return senha;
+
+	public String getDescricao() {
+		return descricao;
 	}
-	public void setSenha(String senha) {
-		this.senha = senha;
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
-	
-	
 
 }
