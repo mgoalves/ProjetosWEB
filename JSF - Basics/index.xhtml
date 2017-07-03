@@ -10,8 +10,20 @@
 </h:head>
 <h:body>
 	<h:form id="frm">
+		<p:messages />
+		<p:panelGrid columns="2">
 
-			
-		</h:form>
+			<p:outputLabel value="Nome" for="nome" />
+			<p:inputText id="nome" required="true"
+				value="#{perfilUsuarioBean.nome}" />
+
+
+
+		</p:panelGrid>
+		<p:commandButton value="
+				Cadastrar"
+			action="#{perfilUsuarioBean.atualizar}" update="@form" />
+
+	</h:form>
 </h:body>
 </html>
