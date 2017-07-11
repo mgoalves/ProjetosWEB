@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>br.inf.ufg</groupId>
 	<artifactId>PedidoVenda</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.0-VERSION</version>
 	<packaging>war</packaging>
 
 
@@ -12,8 +12,9 @@
 		<failOnMissingWebXml>false</failOnMissingWebXml>
 	</properties>
 
+	<!-- Dependências -->
 	<dependencies>
-	
+
 		<!-- Mojarra (implementação do JSF 2.2.8) -->
 		<dependency>
 			<groupId>com.sun.faces</groupId>
@@ -51,8 +52,24 @@
 			<version>2.0</version>
 			<scope>provided</scope>
 		</dependency>
+
+		<!-- Implementações Mojarra 2.2 e 2.3 with Glassfish -->
+		<dependency>
+			<groupId>javax.faces</groupId>
+			<artifactId>javax.faces-api</artifactId>
+			<version>2.2</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish</groupId>
+			<artifactId>javax.faces</artifactId>
+			<version>2.3.0</version>
+			<scope>provided</scope>
+		</dependency>
+
 	</dependencies>
 
+	<!-- Repositórios -->
 	<repositories>
 		<repository>
 			<id>prime-repo</id>
@@ -61,9 +78,8 @@
 			<layout>default</layout>
 		</repository>
 	</repositories>
-	
-	
 
+	<!-- Builds e Plugins -->
 	<build>
 		<finalName>PedidoVenda</finalName>
 		<plugins>
@@ -89,4 +105,3 @@
 	</build>
 
 </project>
-
