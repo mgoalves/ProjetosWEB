@@ -1,0 +1,23 @@
+@CHARSET "utf-8";
+
+.rotulo {
+	width: 150px;
+}
+
+#titulo-pagina {
+	
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+
+.painel {
+	
+	width: 100%;
+	margin-top: 20px;
+}
+
+.ui-panelgrid td{
+	
+	height: 34px;
+	
+}

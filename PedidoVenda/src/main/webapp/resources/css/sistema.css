@@ -1,0 +1,73 @@
+@CHARSET "utf-8";
+
+/*Customizações para todo o sistema --------------------- */
+body {
+	
+	font-size: 14px;
+	font: Arial, Helvetica, sans-serif;
+	margin: 0px;
+	font-weight: normal;
+
+}
+
+/*H1 mais suave*/
+h1 {
+	font-size: 24px;
+	font-weight: 600;
+	padding: 2px;
+	margin: 2px;
+	
+}
+
+/*Ajax Status Requisição do Sistema*/
+.ajax-status {
+	
+	position: fixed;
+	top: 50px;
+	right: 10px;
+	width: 40px;
+	height: 40px;
+	
+}
+
+
+/*Cabeçalho ---------------------------------------------- */
+header {
+	
+	padding: 5px 1px; 
+	margin-bottom: 20px;
+	height: 30px;
+	
+	background-color: #545454;
+	color: #400040;
+	
+	
+	box-shadow: 0px 2px 2px #ccc;
+	
+}
+
+header div{
+	
+	margin-left: 8px;
+	
+}
+
+/*Conteúdo principal ----------------------------------- */
+
+
+div#conteudo {
+	
+	padding: 0px 8px;
+	
+} 
+
+/*Rodapé da página -------------------------------------- */
+footer {
+	
+	text-align: center;
+	padding: 0px 8px;
+	margin-bottom: 10px;
+	
+}
+
+

@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>br.inf.ufg</groupId>
 	<artifactId>PedidoVenda</artifactId>
-	<version>1.0.0-VERSION</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<packaging>war</packaging>
 
 

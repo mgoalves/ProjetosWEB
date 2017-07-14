@@ -1,0 +1,74 @@
+<ui:composition template="/WEB-INF/Template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	<ui:define name="titulo">Novo Produto</ui:define>
+
+	<!-- Página responsável por cadastro de novos produtos -->
+	<ui:define name="corpo">
+		<!-- Titulo da página -->
+		<h1 id="titulo-pagina">Cadastro de Produto</h1>
+
+		<!-- Barra de ferramentas que armazena os botões de ação
+			 Sendo os mesmos agrupados por categoria
+		 -->
+		<p:toolbar>
+
+			<p:toolbarGroup>
+				<p:button value="Novo" outcome="/produtos/CadastroProduto" />
+				<p:commandButton id="btnSalvar" value="Salvar" />
+			</p:toolbarGroup>
+
+			<p:toolbarGroup align="right">
+				<p:button value="Pesquisar" />
+			</p:toolbarGroup>
+
+		</p:toolbar>
+
+
+		<!-- Formulário padrão para cadastro de produtos -->
+		<h:form id="frm">
+			<p:panelGrid columns="2" id="painel" styleClass="painel"
+				columnClasses="rotulo, campo">
+
+				<p:outputLabel value="SKU" for="sku" />
+				<p:inputText id="sku" size="20" maxlength="20" />
+
+				<p:outputLabel value="Nome" for="nome" />
+				<p:inputText id="nome" size="60" maxlength="80" />
+
+				<p:outputLabel value="Categoria" for="categoria" />
+				<p:selectOneMenu id="categoria">
+					<f:selectItem itemLabel="Selecione a categoria" />
+				</p:selectOneMenu>
+
+				<p:outputLabel value="Sub Categoria" for="subCategoria" />
+				<p:selectOneMenu id="subCategoria">
+					<f:selectItem itemLabel="Selecione a Subcategoria" />
+				</p:selectOneMenu>
+
+				<p:outputLabel value="Valor Unitário" for="valorUnitario" />
+				<p:inputText id="valorUnitario" size="10" maxlength="10"
+					styleClass="moeda"/>
+
+				<p:outputLabel value="Qtd Estoque" for="estoque" />
+				<p:inputText id="estoque" size="10" maxlength="4" />
+
+
+			</p:panelGrid>
+		</h:form>
+
+		<script>
+			$(function() {
+				$('#valorUnitario').maskMoney();
+			})
+		</script>
+
+
+	</ui:define>
+
+
+</ui:composition>
