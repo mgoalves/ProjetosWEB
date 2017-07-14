@@ -8,9 +8,7 @@
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title><ui:insert name="titulo">Sistema de Pedida e Venda</ui:insert></title>
-	<script
-		src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"
-		type="text/javascript"></script>
+
 	<h:outputStylesheet library="css" name="sistema.css" />
 	<h:outputStylesheet library="css" name="produto.css" />
     <h:outputScript library="js" name="jquery.maskMoney.js"/>
@@ -50,6 +48,10 @@
 		href="http://facebook.com/marcellodoalves" target="_blank">Facebook</a>
 	</footer>
 
+
+	<!-- Função que permite a configuraçãode mascara contábil
+		 http://plentz.github.io/jquery-maskmoney/
+	-->
 	<script>
 			function configurarMoeda() {
 				$(".moeda").maskMoney({ decimal: ",", thousands: ".", allowZero: true });
