@@ -4,4 +4,5 @@
 /.recommenders/
 /RemoteSystemsTempFiles/
 /Servers/
-
+/PedidoVenda/.settings/
+/PedidoVenda/target/
