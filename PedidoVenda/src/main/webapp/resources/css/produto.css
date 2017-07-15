@@ -1,5 +1,7 @@
 @CHARSET "utf-8";
 
+
+/*Comum a todos os componentes de produto -------------------------------------- */
 .rotulo {
 	width: 150px;
 }
@@ -20,4 +22,27 @@
 	
 	height: 34px;
 	
+}
+
+/*Pesquisa Produto */
+
+.produtosTable {
+	
+	margin-top: 20px;
+}
+
+.colunaPri {
+	
+	text-align: center;
+	width: 100px;
+	
+}
+.colunaTri {
+	
+	width: 250px;
+}
+.colunaQua {
+	
+	text-align: right;
+	width: 120px;
 }
