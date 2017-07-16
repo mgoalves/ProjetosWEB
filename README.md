@@ -7,6 +7,6 @@ PrimeFaces.
 
 
 ## Para fazer um clone:
-git clone https://github.com/mgoalves/TarefaPW-04
+git clone https://github.com/mgoalves/ProjetosWEB
 
 Todos os direitos são reservados ao criador do conteúdo.
