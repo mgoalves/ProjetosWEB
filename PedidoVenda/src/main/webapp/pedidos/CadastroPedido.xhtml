@@ -1,0 +1,43 @@
+<ui:composition template="/WEB-INF/Template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	<ui:define name="titulo">Novo Pedido</ui:define>
+
+	<!-- Página responsável por cadastro de novos pedidos -->
+	<ui:define name="corpo">
+
+		<h:form id="frm">
+
+			<!-- Titulo da página -->
+			<h1 id="titulo-pe-pagina">Cadastro de pedido</h1>
+
+			<!-- Barra de Botões-->
+			<ui:include src="/WEB-INF/Template/pedidos/BotaoPedido.xhtml"></ui:include>
+
+			<!-- Formulário de cadastro de Pedidos -->
+			<ui:include src="/WEB-INF/Template/pedidos/FormPedido.xhtml"></ui:include>
+
+			<!-- TabView com com dados do pedido -->
+			<p:tabView styleClass="painel-pe">
+				<p:tab title="Itens">
+					<ui:include src="/WEB-INF/Template/pedidos/ItensPedido.xhtml"></ui:include>
+				</p:tab>
+				<p:tab title="Dados da Entrega">
+					<ui:include
+						src="/WEB-INF/Template/pedidos/DadosEntregaPedido.xhtml"></ui:include>
+				</p:tab>
+				<p:tab title="Observação">
+					<ui:include
+						src="/WEB-INF/Template/pedidos/ObservacaoPedido.xhtml"></ui:include>
+				</p:tab>
+			</p:tabView>
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>

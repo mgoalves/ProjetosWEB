@@ -24,7 +24,7 @@
 				</p:toolbarGroup>
 
 				<p:toolbarGroup align="right">
-					<p:button value="Novo" />
+					<p:button value="Novo" outcome="/pedidos/CadastroPedido"/>
 				</p:toolbarGroup>
 			</p:toolbar>
 
@@ -65,7 +65,7 @@
 
 			<!-- Grid que retorna o resultado da pesquisa, podendo o mesmo ser dividido em páginas -->
 			<p:dataTable id="pedidosTable"
-				value="#{pesquisaProdutoBean.pedidosFiltrados}" var="pedido"
+				value="#{pesquisaPedidoBean.pedidosFiltrado}" var="pedido"
 				emptyMessage="Nunhum pedido encontrado." rows="20" paginator="true"
 				paginatorAlwaysVisible="false" styleClass="pedidosTable"
 				paginatorPosition="bottom">

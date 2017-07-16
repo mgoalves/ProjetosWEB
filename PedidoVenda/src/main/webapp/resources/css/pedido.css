@@ -3,61 +3,120 @@
 /*Comum a todos os componentes de pedidos -------------------------------- */
 .rotulo-pe {
 	width: 150px;
+	padding: 10px;
+	padding-right: 5px;
+}
+
+.campo-pe {
+	
+	width: 250px;
+	
 }
 
 #titulo-pe-pagina {
-	
 	margin-top: 20px;
 	margin-bottom: 10px;
 }
 
 .painel-pe {
-	
 	width: 100%;
 	margin-top: 20px;
 }
 
-.ui-panelgrid td{
-	
-	height: 34px;
-	
+.ui-panelgrid td {
+	height: 35px;
 }
 
+/* Pesquisa Pedidos ---------------------------------------------------------- */
 /*Grid Info de Pedidos */
-
 .produtosTable {
-	
 	margin-top: 20px;
 }
 
 .colunaPePri {
-	
 	text-align: center;
 	width: 100px;
-	
 }
 
 .colunaPeQua {
-	
 	text-align: center;
 	width: 140px;
-	
 }
+
 .colunaPeQui {
-	
 	text-align: right;
 	width: 120px;
-	
 }
-.colunaPeSex {
 
+.colunaPeSex {
 	width: 100px;
-	
 }
 
 .colunaPeSet {
-	
 	text-align: center;
 	width: 50px;
 }
+
+/* Cadastro de Pedidos ---------------------------------------- */
+.subTotal {
+	font-weight: bold;
+}
+
+.totalPedido {
+	font-weight: bold;
+	font-size: 1.1em;
+}
+
+/* Tabela de cadastro */
+.colunaPECAPri {
 	
+	text-align: center;
+	width: 100px;
+}
+
+/*Não Funciona*/
+.colunaPECASeg span {
+	
+	width: 98%;
+}
+
+.colunaPECATer {
+	
+	text-align: right;
+	width: 120px;
+}
+.colunaPECAQua {
+	
+	text-align: center;
+	width: 100px;
+	
+}
+.colunaPECASex {
+	
+	text-align: right;
+	width: 100px;
+}
+
+/*Customização TABVIEW - Íncio*/
+.ui-tabs .ui-tabs-panel {
+	padding: 0.5em 0.2em !important;
+}
+.ui-tabs {
+	padding: 0px !important;
+}
+.ui-tabs .ui-tabs-nav {
+	margin: -1px !important;
+}
+.ui-tabs.ui-tabs-top > .ui-tabs-nav {
+	padding: 0px !important;
+}
+/*Customização TABVIEW - Fim*/
+
+/*Campo Observação*/
+.campoObs {
+	
+	width: 99%;
+	
+}
+
+
