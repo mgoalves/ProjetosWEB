@@ -1,0 +1,100 @@
+<ui:composition template="/WEB-INF/Template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	<ui:define name="titulo">Pesquisa Pedidos</ui:define>
+
+	<!-- Página responsável por cadastro de novos produtos -->
+	<ui:define name="corpo">
+
+		<h:form id="frm">
+
+			<!-- Titulo da página -->
+			<h1 id="titulo-pe-pagina">Pesquisa de Pedidos</h1>
+
+			<!-- Barra de ferramentas que armazena os botões de ação
+			 Sendo os mesmos agrupados por categoria
+		 	-->
+			<p:toolbar>
+				<p:toolbarGroup>
+					<p:commandButton value="Pesquisar" />
+				</p:toolbarGroup>
+
+				<p:toolbarGroup align="right">
+					<p:button value="Novo" />
+				</p:toolbarGroup>
+			</p:toolbar>
+
+
+			<!-- Formulário padrão para pesquisa de produtos -->
+			<p:panelGrid columns="2" id="painel-pe" styleClass="painel-pe"
+				columnClasses="rotulo-pe, campo">
+
+				<p:outputLabel value="Número"/>
+				<h:panelGroup>
+					<p:inputText size="10" maxlength="15" />
+					a
+					<p:inputText size="10" maxlength="15" />
+				</h:panelGroup>
+				
+				<p:outputLabel value="Data de criação"/>
+				<h:panelGroup>
+					<p:calendar size="10" pattern="dd/MM/yyyy" />
+					a
+					<p:calendar size="10" pattern="dd/MM/yyyy" />
+				</h:panelGroup>
+				
+				<p:outputLabel value="Vendedor" for="vendedor"/>
+				<p:inputText id="vendedor" size="40" maxlength="120"/>
+				
+				<p:outputLabel value="Cliente" for="cliente"/>
+				<p:inputText id="cliente" size="40" maxlength="120"/>
+				
+				<p:outputLabel value="Status"/>
+				<p:selectManyCheckbox>
+					<f:selectItem itemLabel="Orçamento"/>
+					<f:selectItem itemLabel="Emitido"/>
+					<f:selectItem itemLabel="Cancelado"/>
+				</p:selectManyCheckbox>
+			</p:panelGrid>
+
+
+
+			<!-- Grid que retorna o resultado da pesquisa, podendo o mesmo ser dividido em páginas -->
+			<p:dataTable id="pedidosTable"
+				value="#{pesquisaProdutoBean.pedidosFiltrados}" var="pedido"
+				emptyMessage="Nunhum pedido encontrado." rows="20" paginator="true"
+				paginatorAlwaysVisible="false" styleClass="pedidosTable"
+				paginatorPosition="bottom">
+	
+				<p:column headerText="Número" styleClass="colunaPePri">
+					<h:outputText value="12345"/>
+				</p:column>
+				<p:column headerText="Cliente" styleClass="">
+					<h:outputText value="Supermercado das Goiania"/>
+				</p:column>
+				<p:column headerText="Vendedor" styleClass="">
+					<h:outputText value="José Junior"/>
+				</p:column>
+				<p:column headerText="Cliente" styleClass="colunaPeQua">
+					<h:outputText value="05/06/2017"/>
+				</p:column>
+				<p:column headerText="Valor Total" styleClass="colunaPeQui">
+					<h:outputText value="RS 1230,44"/>
+				</p:column>
+				<p:column headerText="Status" styleClass="colunaPeSex">
+					<h:outputText value="Emitido"/>
+				</p:column>
+				<p:column headerText="Ações" styleClass="colunaPeSet">
+					<p:button icon="ui-icon-pencil" title="title"/>
+				</p:column>
+			</p:dataTable>
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>

@@ -9,28 +9,28 @@
 
 	<!-- Página responsável por cadastro de novos produtos -->
 	<ui:define name="corpo">
-		<!-- Titulo da página -->
-		<h1 id="titulo-pagina">Cadastro de Produto</h1>
 
-		<!-- Barra de ferramentas que armazena os botões de ação
+		<h:form id="frm">
+			<!-- Titulo da página -->
+			<h1 id="titulo-pagina">Cadastro de Produto</h1>
+
+			<!-- Barra de ferramentas que armazena os botões de ação
 			 Sendo os mesmos agrupados por categoria
 		 -->
-		<p:toolbar>
+			<p:toolbar>
 
-			<p:toolbarGroup>
-				<p:button value="Novo" outcome="/produtos/CadastroProduto" />
-				<p:commandButton id="btnSalvar" value="Salvar" />
-			</p:toolbarGroup>
+				<p:toolbarGroup>
+					<p:button value="Novo" outcome="/produtos/CadastroProduto" />
+					<p:commandButton id="btnSalvar" value="Salvar" />
+				</p:toolbarGroup>
 
-			<p:toolbarGroup align="right">
-				<p:button value="Pesquisar" />
-			</p:toolbarGroup>
+				<p:toolbarGroup align="right">
+					<p:button value="Pesquisar" outcome="/produtos/PesquisaProduto" />
+				</p:toolbarGroup>
 
-		</p:toolbar>
+			</p:toolbar>
 
-
-		<!-- Formulário padrão para cadastro de produtos -->
-		<h:form id="frm">
+			<!-- Formulário padrão para cadastro de produtos -->
 			<p:panelGrid columns="2" id="painel" styleClass="painel"
 				columnClasses="rotulo, campo">
 
@@ -52,7 +52,7 @@
 
 				<p:outputLabel value="Valor Unitário" for="valorUnitario" />
 				<p:inputText id="valorUnitario" size="10" maxlength="10"
-					styleClass="moeda"/>
+					styleClass="moeda" />
 
 				<p:outputLabel value="Qtd Estoque" for="estoque" />
 				<p:inputText id="estoque" size="10" maxlength="4" />

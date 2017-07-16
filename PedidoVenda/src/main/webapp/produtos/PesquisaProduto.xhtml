@@ -5,7 +5,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core">
 
-	<ui:define name="titulo">Novo Produto</ui:define>
+	<ui:define name="titulo">Pesquisa Pedido</ui:define>
 
 	<!-- Página responsável por cadastro de novos produtos -->
 	<ui:define name="corpo">
@@ -18,7 +18,6 @@
 			 Sendo os mesmos agrupados por categoria
 		 -->
 			<p:toolbar>
-
 				<p:toolbarGroup>
 					<p:commandButton value="Pesquisar" />
 				</p:toolbarGroup>
@@ -26,12 +25,10 @@
 				<p:toolbarGroup align="right">
 					<p:button value="Novo" outcome="/produtos/CadastroProduto" />
 				</p:toolbarGroup>
-
 			</p:toolbar>
 
 
 			<!-- Formulário padrão para cadastro de produtos -->
-
 			<p:panelGrid columns="2" id="painel" styleClass="painel"
 				columnClasses="rotulo, campo">
 
@@ -41,7 +38,9 @@
 				<p:outputLabel value="Nome" for="nome" />
 				<p:inputText id="nome" size="60" maxlength="120" />
 			</p:panelGrid>
+			
 
+			<!-- Grid que retorna o resultado da pesquisa, podendo o mesmo ser dividido em páginas -->
 			<p:dataTable id="produtosTable"
 				value="#{pesquisaProdutoBean.produtoFiltrados}" var="produto"
 				emptyMessage="Nunhum produto encontrado" rows="20" paginator="true"
@@ -63,12 +62,10 @@
 				<p:column headerText="Estoque" styleClass="colunaPri">
 					<h:outputText value="98" />
 				</p:column>
-				
 				<p:column headerText="Ações" styleClass="colunaPri">
-					<p:button icon="ui-icon-pencil" title="Editar"/>
-					<p:commandButton icon="ui-icon-trash" title="Excluir"/>
+					<p:button icon="ui-icon-pencil" title="Editar" />
+					<p:commandButton icon="ui-icon-trash" title="Excluir" />
 				</p:column>
-
 			</p:dataTable>
 
 		</h:form>

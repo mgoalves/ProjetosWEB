@@ -1,0 +1,63 @@
+@CHARSET "utf-8";
+
+/*Comum a todos os componentes de pedidos -------------------------------- */
+.rotulo-pe {
+	width: 150px;
+}
+
+#titulo-pe-pagina {
+	
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+
+.painel-pe {
+	
+	width: 100%;
+	margin-top: 20px;
+}
+
+.ui-panelgrid td{
+	
+	height: 34px;
+	
+}
+
+/*Grid Info de Pedidos */
+
+.produtosTable {
+	
+	margin-top: 20px;
+}
+
+.colunaPePri {
+	
+	text-align: center;
+	width: 100px;
+	
+}
+
+.colunaPeQua {
+	
+	text-align: center;
+	width: 140px;
+	
+}
+.colunaPeQui {
+	
+	text-align: right;
+	width: 120px;
+	
+}
+.colunaPeSex {
+
+	width: 100px;
+	
+}
+
+.colunaPeSet {
+	
+	text-align: center;
+	width: 50px;
+}
+	
