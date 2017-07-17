@@ -11,8 +11,9 @@
 
 	<h:outputStylesheet library="css" name="sistema.css" />
 	<h:outputStylesheet library="css" name="produto.css" />
-	<h:outputStylesheet library="css" name="pedido.css"/>
-    <h:outputScript library="js" name="jquery.maskMoney.js"/>
+	<h:outputStylesheet library="css" name="pedido.css" />
+	<h:outputScript library="js" name="jquery.maskMoney.js" />
+	<h:outputScript library="js" name="funcoes.js" />
 </h:head>
 
 
@@ -27,13 +28,38 @@
 	</p:ajaxStatus>
 
 	<!-- Cabeçalho da página -->
-	<header>
-	<div>
-		<!-- LogoMarca StyleSheet -->
-		<h:link>
+	<header> <!-- LogoMarca StyleSheet -->
+	<div id="logomarca">
+		<h:link outcome="/Home">
 			<h:graphicImage library="images" name="logoAlgaworks.png" />
 		</h:link>
 	</div>
+
+	<div id="menuBar">
+
+		<span id="user"> Olá Usuário </span>
+		<h:form>
+
+			<p:menubar styleClass="menuSistema">
+				<p:submenu label="Cadastros">
+					<p:menuitem value="Clientes" />
+					<p:menuitem value="Usuários" />
+					<p:separator />
+					<p:menuitem value="Categorias" />
+					<p:menuitem value="Produtos" outcome="/produtos/PesquisaProduto" />
+				</p:submenu>
+
+				<p:submenu label="Pedidos">
+					<p:menuitem value="Novo Pedido" outcome="/pedidos/CadastroPedido" />
+					<p:menuitem value="Novo Pedido" outcome="/pedidos/PesquisaPedido" />
+				</p:submenu>
+
+				<p:menuitem value="Sair" />
+			</p:menubar>
+
+		</h:form>
+	</div>
+
 	</header>
 
 	<!-- Corpo da nóticia -->
@@ -50,17 +76,5 @@
 	</footer>
 
 
-	<!-- Função que permite a configuraçãode mascara contábil
-		 http://plentz.github.io/jquery-maskmoney/
-	-->
-	<script>
-			function configurarMoeda() {
-				$(".moeda").maskMoney({ decimal: ",", thousands: ".", allowZero: true });
-			}
-			
-			$(document).ready(function() {
-				configurarMoeda();
-			});
-		</script>
 </h:body>
 </html>

@@ -2,12 +2,10 @@
 
 /*Customizações para todo o sistema --------------------- */
 body {
-	
 	font-size: 14px;
 	font: Arial, Helvetica, sans-serif;
 	margin: 0px;
 	font-weight: normal;
-
 }
 
 /*H1 mais suave*/
@@ -16,58 +14,83 @@ h1 {
 	font-weight: 600;
 	padding: 2px;
 	margin: 2px;
-	
 }
 
 /*Ajax Status Requisição do Sistema*/
 .ajax-status {
-	
 	position: fixed;
 	top: 50px;
 	right: 10px;
 	width: 40px;
 	height: 40px;
-	
 }
-
 
 /*Cabeçalho ---------------------------------------------- */
 header {
-	
-	padding: 5px 1px; 
+	padding: 5px 1px;
 	margin-bottom: 20px;
 	height: 30px;
-	
-	background-color: #545454;
+	background-color: #313131;
 	color: #400040;
-	
-	
 	box-shadow: 0px 2px 2px #ccc;
+}
+
+header div#logomarca {
+	margin-left: 8px;
+	width: 250px;
+	float: left;
+}
+
+header div#menuBar {
+	
+	float: right;
+	margin-right: 10px;
+	position: relative;
+}
+
+#user {
+	float: left;
+	height: 20px;
+	line-height: 30px;
+	margin-right: 60px;
+	color: #fff;
+}
+
+header div form {
+	display: inline-block;
+}
+
+/*Customização do Menu - Inicio*/
+.menuSistema {
+	
+	border: 0px !important;
+	padding: 0px !important;
+	background: none !important;
+}
+
+.menuSistema .menu-parent > a .ui-menuitem-text, .menuSistema > .ui-menu-list > .ui-menuitem > a > .ui-menuitem-text {
+	
+	color: #fff !important;
 	
 }
 
-header div{
+.menuSistema .ui-icon-triagle-1-s {
 	
-	margin-left: 8px;
+	background: url(#{resource['images:seta-para-baixo.png']})
 	
 }
+
+/*Customização do Menu - Fim*/
+
 
 /*Conteúdo principal ----------------------------------- */
-
-
 div#conteudo {
-	
 	padding: 0px 8px;
-	
-} 
+}
 
 /*Rodapé da página -------------------------------------- */
 footer {
-	
 	text-align: center;
 	padding: 0px 8px;
 	margin-bottom: 10px;
-	
 }
-
-
