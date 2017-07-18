@@ -3,11 +3,10 @@ package br.inf.ufg.pedidovenda.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Named;
 
-@SuppressWarnings("deprecation")
-@ManagedBean
+@Named
 @RequestScoped
 public class CadastroPedidoBean {
 
@@ -22,5 +21,6 @@ public class CadastroPedidoBean {
 	public List<Integer> getItens() {	
 		return itens;
 	}
+	
 
 }

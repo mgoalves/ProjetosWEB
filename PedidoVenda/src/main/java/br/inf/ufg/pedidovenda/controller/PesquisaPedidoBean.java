@@ -4,13 +4,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-import javax.faces.bean.ViewScoped;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Named;
 
-@SuppressWarnings("deprecation")
-@ManagedBean
-@ViewScoped
+@Named
 @RequestScoped
 public class PesquisaPedidoBean implements Serializable {
 

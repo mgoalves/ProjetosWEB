@@ -45,14 +45,6 @@
 			<scope>compile</scope>
 		</dependency>
 
-		<!-- CDI API - Biblioteca de JAR -->
-		<dependency>
-			<groupId>javax.enterprise</groupId>
-			<artifactId>cdi-api</artifactId>
-			<version>2.0</version>
-			<scope>provided</scope>
-		</dependency>
-
 		<!-- Implementações Mojarra 2.2 e 2.3 with Glassfish -->
 		<dependency>
 			<groupId>javax.faces</groupId>
@@ -67,6 +59,32 @@
 			<scope>provided</scope>
 		</dependency>
 
+		<!-- CDI API - Biblioteca de JAR -->
+		<dependency>
+			<groupId>javax.enterprise</groupId>
+			<artifactId>cdi-api</artifactId>
+			<version>2.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.enterprise</groupId>
+			<artifactId>cdi-api</artifactId>
+			<version>1.2</version>
+			<scope>scoped</scope>
+		</dependency>
+
+		<!-- Implementação para o CDI usando o Weld -->
+		<dependency>
+			<groupId>org.jboss.weld.servlet</groupId>
+			<artifactId>weld-servlet</artifactId>
+			<version>2.4.4.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.weld.servlet</groupId>
+			<artifactId>weld-servlet-core</artifactId>
+			<version>2.4.4.Final</version>
+		</dependency>
+		
 	</dependencies>
 
 	<!-- Repositórios -->

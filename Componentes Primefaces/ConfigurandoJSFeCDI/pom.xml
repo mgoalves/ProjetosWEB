@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>br.inf.ufg</groupId>
-	<artifactId>PedidoVenda</artifactId>
+	<artifactId>ConfigurandoJSFeCDI</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>war</packaging>
 
@@ -66,6 +66,12 @@
 			<version>2.0</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>javax.enterprise</groupId>
+			<artifactId>cdi-api</artifactId>
+			<version>1.2</version>
+			<scope>scoped</scope>
+		</dependency>
 
 		<!-- Implementação para o CDI usando o Weld -->
 		<dependency>
@@ -78,7 +84,21 @@
 			<artifactId>weld-servlet-core</artifactId>
 			<version>2.4.4.Final</version>
 		</dependency>
-		
+
+		<!-- Servlet -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+			<scope>provided</scope>
+		</dependency>
+
 	</dependencies>
 
 	<!-- Repositórios -->
@@ -93,7 +113,7 @@
 
 	<!-- Builds e Plugins -->
 	<build>
-		<finalName>PedidoVenda</finalName>
+		<finalName>ConfigurandoJSFeCDI</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.tomcat.maven</groupId>
