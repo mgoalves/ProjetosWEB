@@ -21,7 +21,7 @@
 
 				<p:toolbarGroup>
 					<p:button value="Novo" outcome="/produtos/CadastroProduto" />
-					<p:commandButton id="btnSalvar" value="Salvar" />
+					<p:commandButton id="btnSalvar" value="Salvar" action="#{cadastroProdutoBean.salvar}"/>
 				</p:toolbarGroup>
 
 				<p:toolbarGroup align="right">
@@ -35,18 +35,18 @@
 				columnClasses="rotulo, campo">
 
 				<p:outputLabel value="SKU" for="sku" />
-				<p:inputText id="sku" size="20" maxlength="20" />
+				<p:inputText id="sku" size="20" maxlength="20" styleClass="larguraEntrada"/>
 
 				<p:outputLabel value="Nome" for="nome" />
 				<p:inputText id="nome" size="60" maxlength="80" />
 
 				<p:outputLabel value="Categoria" for="categoria" />
-				<p:selectOneMenu id="categoria">
+				<p:selectOneMenu id="categoria" styleClass="larguraEntrada">
 					<f:selectItem itemLabel="Selecione a categoria" />
 				</p:selectOneMenu>
 
 				<p:outputLabel value="Sub Categoria" for="subCategoria" />
-				<p:selectOneMenu id="subCategoria">
+				<p:selectOneMenu id="subCategoria" styleClass="larguraEntrada" >
 					<f:selectItem itemLabel="Selecione a Subcategoria" />
 				</p:selectOneMenu>
 

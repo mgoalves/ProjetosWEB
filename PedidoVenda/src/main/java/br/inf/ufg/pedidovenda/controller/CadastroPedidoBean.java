@@ -6,6 +6,8 @@ import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
+import br.inf.ufg.pedidovenda.service.NegocioException;
+
 @Named
 @RequestScoped
 public class CadastroPedidoBean {
@@ -22,5 +24,8 @@ public class CadastroPedidoBean {
 		return itens;
 	}
 	
+	public void salvar(){
+		throw new NegocioException("Não implementado.");
+	}
 
 }
