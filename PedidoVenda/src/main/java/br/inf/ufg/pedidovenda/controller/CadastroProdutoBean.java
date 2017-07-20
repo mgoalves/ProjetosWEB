@@ -11,9 +11,8 @@ public class CadastroProdutoBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
-	public RuntimeException salvar(){
-		
-		return new RuntimeException("Erro ao salvar");
+	public void salvar(){
+		throw new RuntimeException("Erro ao salvar");
 	}
 	
 }

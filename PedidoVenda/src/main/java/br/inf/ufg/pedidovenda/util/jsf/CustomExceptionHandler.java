@@ -12,12 +12,19 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ExceptionQueuedEvent;
 import javax.faces.event.ExceptionQueuedEventContext;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import br.inf.ufg.pedidovenda.service.NegocioException;
 
 public class CustomExceptionHandler extends ExceptionHandlerWrapper {
 
+	// Instancia o log para salvar os dados de erro que o sistema gera.
+	private static Log log = LogFactory.getLog(CustomExceptionHandler.class);
+	
 	private ExceptionHandler wrapped;
 
+	// Construtor da classe
 	public CustomExceptionHandler(ExceptionHandler wrapped) {
 		super();
 		this.wrapped = wrapped;
@@ -51,6 +58,7 @@ public class CustomExceptionHandler extends ExceptionHandlerWrapper {
 					FacesUtil.addErrorMessage(negocioException.getMessage());
 				} else {
 					handled = true;
+					log.error("Erro de Sistema: " + exception.getMessage(), exception);
 					redirect("/Erro.xhtml");
 				}
 			} finally {
@@ -64,6 +72,9 @@ public class CustomExceptionHandler extends ExceptionHandlerWrapper {
 		getWrapped().handle();
 	}
 
+	// Função responsável por vasculhar a exceção e decompola
+	// para ver se é uma exceção do tipo NegocioException usando
+	// a recursividade
 	private NegocioException getNegocioException(Throwable exception) {
 
 		if (exception instanceof NegocioException) {
@@ -76,6 +87,10 @@ public class CustomExceptionHandler extends ExceptionHandlerWrapper {
 		return null;
 	}
 
+	/*
+	 * Função usada para redirecionar o usuário para a home page quando houve o
+	 * erro ViewExpiredException
+	 */
 	private void redirect(String page) {
 		try {
 			FacesContext facesContext = FacesContext.getCurrentInstance();
