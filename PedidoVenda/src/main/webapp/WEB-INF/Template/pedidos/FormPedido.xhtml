@@ -8,42 +8,56 @@
 		columnClasses="rotulo-pe, campo-pe, rotulo-pe, campo-pe">
 
 		<p:outputLabel value="Número" />
-		<h:outputText value="12345" />
+		<h:outputText value="#{cadastroPedidoBean.pedido.id}" />
 
 		<p:outputLabel value="Data de Criação" />
-		<h:outputText value="12345" />
+		<h:outputText value="#{cadastroPedidoBean.pedido.dataCriacao}">
+			<f:convertDateTime pattern="dd/MM/yyyy" />
+		</h:outputText>
 
 		<p:outputLabel value="Status" />
-		<h:outputText value="Orçamento" />
+		<h:outputText value="#{cadastroPedidoBean.pedido.status}" />
 
 		<p:outputLabel value="Vendedor" for="vendedor" />
-		<p:selectOneMenu id="vendedor">
+		<p:selectOneMenu id="vendedor"
+			value="#{cadastroPedidoBean.pedido.vendedor}">
 			<f:selectItem itemLabel="Selecione" />
 			<f:selectItem itemLabel="José Junior" />
 			<!-- <f:selectItems value=""/>  -->
 		</p:selectOneMenu>
 
 		<p:outputLabel value="Cliente" for="cliente" />
-		<p:autoComplete id="cliente" size="40" dropdown="true" />
+		<p:autoComplete id="cliente" size="40" dropdown="true"
+			value="#{cadastroPedidoBean.pedido.cliente}" />
 
 		<p:outputLabel value="Forma de Pagamento" for="formaPagamento" />
-		<p:selectOneMenu id="formaPagamento">
+		<p:selectOneMenu id="formaPagamento"
+			value="#{cadastroPedidoBean.pedido.formaPagamento}">
 			<f:selectItem itemLabel="Selecione" />
 			<f:selectItem itemLabel="Cartão de Crédito" />
 			<!-- <f:selectItems value=""/>  -->
 		</p:selectOneMenu>
 
 		<p:outputLabel value="Valor do Frete" for="valorFrete" />
-		<h:inputText id="valorFrete" size="10" maxlength="10" styleClass="moeda"/>
+		<p:inputText id="valorFrete" size="10" maxlength="10"
+			styleClass="moeda" value="#{cadastroPedidoBean.pedido.valorFrete}">
+			<f:convertNumber maxFractionDigits="2" minFractionDigits="2" />
+		</p:inputText>
 
 		<p:outputLabel value="SubTotal" styleClass="subTotal" />
 		<h:outputText value="R$ 0,00" styleClass="subTotal" id="subTotal" />
 
 		<p:outputLabel value="Valor do Desconto" for="valorDesconto" />
-		<h:inputText id="valorDesconto"  size="10" maxlength="10" styleClass="moeda"/>
-		
+		<p:inputText id="valorDesconto" size="10" maxlength="10"
+			styleClass="moeda" value="#{cadastroPedidoBean.pedido.valorDesconto}">
+			<f:convertNumber maxFractionDigits="2" minFractionDigits="2" />
+		</p:inputText>
+
 		<p:outputLabel value="Total do Pedido" styleClass="totalPedido" />
-		<h:outputText value="R$ 0,00" styleClass="totalPedido" id="totalPedido" />
+		<h:outputText value="#{cadastroPedidoBean.pedido.valorTotal}"
+			styleClass="totalPedido" id="totalPedido">
+			<f:convertNumber type="currency" />
+		</h:outputText>
 	</h:panelGrid>
 
 </ui:composition>

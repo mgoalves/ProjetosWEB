@@ -4,7 +4,11 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.NotBlank;
+
+@SuppressWarnings("deprecation")
 @Embeddable
 public class EnderecoEntrega implements Serializable {
 
@@ -18,6 +22,7 @@ public class EnderecoEntrega implements Serializable {
 	private String cep;
 
 	// Getters and Setters -------------------------------------------
+	@NotBlank @Size(max = 100)
 	@Column(name = "ent_logradouro", nullable = false, length = 100)
 	public String getLogradouro() {
 		return logradouro;
@@ -25,6 +30,8 @@ public class EnderecoEntrega implements Serializable {
 	public void setLogradouro(String logradouro) {
 		this.logradouro = logradouro;
 	}
+	
+	@NotBlank @Size(max = 20)
 	@Column(name = "ent_numero", nullable = false, length = 10)
 	public String getNumero() {
 		return numero;
@@ -32,6 +39,8 @@ public class EnderecoEntrega implements Serializable {
 	public void setNumero(String numero) {
 		this.numero = numero;
 	}
+	
+	@Size(max = 100)
 	@Column(name = "ent_complemento", length = 100)
 	public String getComplemento() {
 		return complemento;
@@ -39,6 +48,8 @@ public class EnderecoEntrega implements Serializable {
 	public void setComplemento(String complemento) {
 		this.complemento = complemento;
 	}
+	
+	@NotBlank @Size(max = 60)
 	@Column(name = "ent_cidade", nullable = false, length = 60)
 	public String getCidade() {
 		return cidade;
@@ -46,6 +57,8 @@ public class EnderecoEntrega implements Serializable {
 	public void setCidade(String cidade) {
 		this.cidade = cidade;
 	}
+	
+	@NotBlank @Size(max = 60)
 	@Column(name = "ent_uf", nullable = false, length = 60)
 	public String getUf() {
 		return uf;
@@ -53,6 +66,8 @@ public class EnderecoEntrega implements Serializable {
 	public void setUf(String uf) {
 		this.uf = uf;
 	}
+	
+	@NotBlank @Size(max = 9)
 	@Column(name = "ent_cep", nullable = false, length = 9)
 	public String getCep() {
 		return cep;

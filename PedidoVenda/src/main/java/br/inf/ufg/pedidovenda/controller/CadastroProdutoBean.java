@@ -14,7 +14,6 @@ public class CadastroProdutoBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	
 	private Produto produto;
 	
 	private CadastroProdutoBean(){
