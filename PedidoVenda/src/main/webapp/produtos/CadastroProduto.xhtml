@@ -14,20 +14,20 @@
 			<!-- Titulo da página -->
 			<h1 id="titulo-pagina">Cadastro de Produto</h1>
 
-			<!-- Barra de ferramentas que armazena os botões de ação
-			 Sendo os mesmos agrupados por categoria
-		 -->
-			<p:toolbar>
+			<p:messages autoUpdate="true" closable="true" />
 
+			<!-- Barra de ferramentas que armazena os botões de ação
+			 Sendo os mesmos agrupados por categoria -->
+			<p:toolbar>
 				<p:toolbarGroup>
 					<p:button value="Novo" outcome="/produtos/CadastroProduto" />
-					<p:commandButton id="btnSalvar" value="Salvar" action="#{cadastroProdutoBean.salvar}"/>
+					<p:commandButton id="btnSalvar" value="Salvar"
+						action="#{cadastroProdutoBean.salvar}" />
 				</p:toolbarGroup>
 
 				<p:toolbarGroup align="right">
 					<p:button value="Pesquisar" outcome="/produtos/PesquisaProduto" />
 				</p:toolbarGroup>
-
 			</p:toolbar>
 
 			<!-- Formulário padrão para cadastro de produtos -->
@@ -35,10 +35,13 @@
 				columnClasses="rotulo, campo">
 
 				<p:outputLabel value="SKU" for="sku" />
-				<p:inputText id="sku" size="20" maxlength="20" styleClass="larguraEntrada"/>
+				<p:inputText id="sku" size="20" maxlength="20"
+					styleClass="larguraEntrada"
+					value="#{cadastroProdutoBean.produto.sku}" />
 
 				<p:outputLabel value="Nome" for="nome" />
-				<p:inputText id="nome" size="60" maxlength="80" />
+				<p:inputText id="nome" size="60" maxlength="80"
+					value="#{cadastroProdutoBean.produto.nome}" />
 
 				<p:outputLabel value="Categoria" for="categoria" />
 				<p:selectOneMenu id="categoria" styleClass="larguraEntrada">
@@ -46,27 +49,24 @@
 				</p:selectOneMenu>
 
 				<p:outputLabel value="Sub Categoria" for="subCategoria" />
-				<p:selectOneMenu id="subCategoria" styleClass="larguraEntrada" >
-					<f:selectItem itemLabel="Selecione a Subcategoria" />
+				<p:selectOneMenu id="subCategoria" styleClass="larguraEntrada">
+					<f:selectItem itemLabel="Selecione a Subcategoria"
+						value="#{cadastroProdutoBean.produto.categoria}" />
 				</p:selectOneMenu>
 
-				<p:outputLabel value="Valor Unitário" for="valorUnitario" />
-				<p:inputText id="valorUnitario" size="10" maxlength="10"
-					styleClass="moeda" />
-
+				<p:outputLabel value="Valor Unitário" for="valorUnitario"/>
+	    		<p:inputText id="valorUnitario" size="10" maxlength="10" styleClass="moeda"
+	    			value="#{cadastroProdutoBean.produto.valorUnitario}">
+	    			<f:convertNumber maxFractionDigits="2" minFractionDigits="2" />
+	    		</p:inputText>
+				
 				<p:outputLabel value="Qtd Estoque" for="estoque" />
-				<p:inputText id="estoque" size="10" maxlength="4" />
+				<p:inputText id="estoque" size="10" maxlength="4"
+					value="#{cadastroProdutoBean.produto.quantidadeEstoque}"/>
 
 
 			</p:panelGrid>
 		</h:form>
-
-		<script>
-			$(function() {
-				$('#valorUnitario').maskMoney();
-			})
-		</script>
-
 
 	</ui:define>
 
