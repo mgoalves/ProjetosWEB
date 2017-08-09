@@ -10,6 +10,15 @@
 	<!-- Página responsável por cadastro de novos produtos -->
 	<ui:define name="corpo">
 
+		<!-- Carrega metadatadados para o Browser -->
+		<f:metadata>
+			<!-- Aciona o carregamento da lista de categorias do BD -->
+			<f:event listener="#{cadastroProdutoBean.inicializar}"
+				type="preRenderView" />
+		</f:metadata>
+
+
+
 		<h:form id="frm">
 			<!-- Titulo da página -->
 			<h1 id="titulo-pagina">Cadastro de Produto</h1>
@@ -46,6 +55,9 @@
 				<p:outputLabel value="Categoria" for="categoria" />
 				<p:selectOneMenu id="categoria" styleClass="larguraEntrada">
 					<f:selectItem itemLabel="Selecione a categoria" />
+					<f:selectItems value="#{cadastroProdutoBean.categoriasRaizes}"
+						var="categoria" itemValue="#{categoria}"
+						itemLabel="#{categoria.descricao}" />
 				</p:selectOneMenu>
 
 				<p:outputLabel value="Sub Categoria" for="subCategoria" />
@@ -54,15 +66,16 @@
 						value="#{cadastroProdutoBean.produto.categoria}" />
 				</p:selectOneMenu>
 
-				<p:outputLabel value="Valor Unitário" for="valorUnitario"/>
-	    		<p:inputText id="valorUnitario" size="10" maxlength="10" styleClass="moeda"
-	    			value="#{cadastroProdutoBean.produto.valorUnitario}">
-	    			<f:convertNumber maxFractionDigits="2" minFractionDigits="2" />
-	    		</p:inputText>
-				
+				<p:outputLabel value="Valor Unitário" for="valorUnitario" />
+				<p:inputText id="valorUnitario" size="10" maxlength="10"
+					styleClass="moeda"
+					value="#{cadastroProdutoBean.produto.valorUnitario}">
+					<f:convertNumber maxFractionDigits="2" minFractionDigits="2" />
+				</p:inputText>
+
 				<p:outputLabel value="Qtd Estoque" for="estoque" />
 				<p:inputText id="estoque" size="10" maxlength="4"
-					value="#{cadastroProdutoBean.produto.quantidadeEstoque}"/>
+					value="#{cadastroProdutoBean.produto.quantidadeEstoque}" />
 
 
 			</p:panelGrid>

@@ -9,12 +9,13 @@
 		<class>br.inf.ufg.pedidovenda.model.cliente.Cliente</class>
 		<class>br.inf.ufg.pedidovenda.model.cliente.Endereco</class>
 		<class>br.inf.ufg.pedidovenda.model.pedido.EnderecoEntrega</class>
-		<class>br.inf.ufg.pedidovenda.model.pedido.ItemPedido</class>
 		<class>br.inf.ufg.pedidovenda.model.pedido.Pedido</class>
 		<class>br.inf.ufg.pedidovenda.model.produto.Categoria</class>
 		<class>br.inf.ufg.pedidovenda.model.produto.Grupo</class>
 		<class>br.inf.ufg.pedidovenda.model.produto.Produto</class>
-
+		<class>br.inf.ufg.pedidovenda.model.pedido.ItemPedido</class>
+		<!--  <class>br.inf.ufg.pedidovenda.controller.CadastroProdutoBean</class> -->
+		
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/pedido_venda?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC" />
 			<property name="javax.persistence.jdbc.user" value="root" />
