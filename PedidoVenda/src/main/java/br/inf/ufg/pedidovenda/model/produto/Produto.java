@@ -13,9 +13,12 @@ import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
+
+import br.inf.ufg.pedidovenda.validation.SKU;
 
 @SuppressWarnings("deprecation")
 @Entity
@@ -54,7 +57,7 @@ public class Produto implements Serializable {
 	}
 	
 	
-	@NotBlank @Size(max = 20)
+	@NotBlank @Size(max = 20) @SKU
 	@Column(nullable = false, length = 20, unique = true)
 	public String getSku() {
 		return sku;
@@ -63,7 +66,7 @@ public class Produto implements Serializable {
 		this.sku = sku == null ? null : sku.toUpperCase();
 	}
 	
-	@NotNull
+	@NotNull(message = "é obrigatório")
 	@Column(name="valor_unitario", nullable = false, precision = 10, scale = 2)
 	public BigDecimal getValorUnitario() {
 		return valorUnitario;
