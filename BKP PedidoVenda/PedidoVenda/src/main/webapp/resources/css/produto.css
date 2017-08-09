@@ -1,0 +1,57 @@
+@CHARSET "utf-8";
+
+
+/*Comum a todos os componentes de produto -------------------------------------- */
+.rotulo {
+	width: 150px;
+}
+
+#titulo-pagina {
+	
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+
+.painel {
+	
+	width: 100%;
+	margin-top: 20px;
+}
+
+.ui-panelgrid td{
+	
+	height: 34px;
+	
+}
+
+/*Pesquisa Produto */
+
+.produtosTable {
+	
+	margin-top: 20px;
+}
+
+.colunaPri {
+	
+	text-align: center;
+	width: 100px;
+	
+}
+.colunaTri {
+	
+	width: 250px;
+}
+.colunaQua {
+	
+	text-align: right;
+	width: 120px;
+}
+
+/*Campos de Cadastro Produto*/
+
+.larguraEntrada { 
+	
+	width: 220px;
+	
+}
+
