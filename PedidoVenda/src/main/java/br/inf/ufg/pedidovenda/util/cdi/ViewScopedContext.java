@@ -19,7 +19,7 @@ import javax.faces.event.SystemEventListener;
  *
  * @author Steve Taylor
  */
-@SuppressWarnings("deprecation")
+
 public class ViewScopedContext implements Context, SystemEventListener
 {
 	@Override

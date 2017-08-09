@@ -14,7 +14,7 @@
 
 	<factory>
 		<exception-handler-factory>
-			br.inf.ufg.pedidovenda.util.jsf.CustomExceptionHandlerFactory</exception-handler-factory>
+			br.inf.ufg.pedidovenda.util.jsf.JsfExceptionHandlerFactory</exception-handler-factory>
 	</factory>
 
 </faces-config>

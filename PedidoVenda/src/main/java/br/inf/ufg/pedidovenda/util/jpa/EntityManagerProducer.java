@@ -14,18 +14,16 @@ public class EntityManagerProducer {
 	private EntityManagerFactory factory;
 	
 	public EntityManagerProducer() {
-		
 		factory = Persistence.createEntityManagerFactory("PedidoPU");
 	}
 	
 	@Produces @RequestScoped
 	public EntityManager createEntityManager() {
-		
 		return factory.createEntityManager();
 	}
 	
 	public void closeEntityManager(@Disposes EntityManager manager) {
-		
 		manager.close();
 	}
+	
 }

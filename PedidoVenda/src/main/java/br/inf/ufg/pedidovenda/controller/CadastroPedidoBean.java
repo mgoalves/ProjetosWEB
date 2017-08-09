@@ -4,17 +4,15 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Named;
 
 import br.inf.ufg.pedidovenda.model.pedido.EnderecoEntrega;
 import br.inf.ufg.pedidovenda.model.pedido.Pedido;
 
-@SuppressWarnings("deprecation")
+
 @Named
 @ViewScoped
-@RequestScoped
 public class CadastroPedidoBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;

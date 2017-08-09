@@ -3,17 +3,17 @@ package br.inf.ufg.pedidovenda.util.jsf;
 import javax.faces.context.ExceptionHandler;
 import javax.faces.context.ExceptionHandlerFactory;
 
-public class CustomExceptionHandlerFactory extends ExceptionHandlerFactory {
+public class JsfExceptionHandlerFactory extends ExceptionHandlerFactory {
 
 	private ExceptionHandlerFactory parent;
 	
-	public CustomExceptionHandlerFactory(ExceptionHandlerFactory parent) {
+	public JsfExceptionHandlerFactory(ExceptionHandlerFactory parent) {
 		this.parent = parent;
 	}
 	
 	@Override
 	public ExceptionHandler getExceptionHandler() {
-		return new CustomExceptionHandler(parent.getExceptionHandler());
+		return new JsfExceptionHandler(parent.getExceptionHandler());
 	}
 	
 }

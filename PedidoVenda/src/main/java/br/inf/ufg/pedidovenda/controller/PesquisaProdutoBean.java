@@ -7,7 +7,7 @@ import java.util.List;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Named;
 
-@SuppressWarnings({ "deprecation" })
+
 @Named
 @ViewScoped
 public class PesquisaProdutoBean implements Serializable {

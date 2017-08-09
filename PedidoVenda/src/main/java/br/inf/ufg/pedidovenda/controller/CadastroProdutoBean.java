@@ -10,7 +10,7 @@ import javax.persistence.EntityManager;
 import br.inf.ufg.pedidovenda.model.produto.Categoria;
 import br.inf.ufg.pedidovenda.model.produto.Produto;
 
-@SuppressWarnings("deprecation")
+
 @Named
 @ViewScoped
 public class CadastroProdutoBean implements Serializable {

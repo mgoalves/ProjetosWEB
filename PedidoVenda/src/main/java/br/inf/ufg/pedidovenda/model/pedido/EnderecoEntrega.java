@@ -8,7 +8,7 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
 
-@SuppressWarnings("deprecation")
+
 @Embeddable
 public class EnderecoEntrega implements Serializable {
 
