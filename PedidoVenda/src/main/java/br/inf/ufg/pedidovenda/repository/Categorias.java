@@ -28,4 +28,10 @@ public class Categorias implements Serializable {
 		return manager.createQuery("from Categoria", Categoria.class).getResultList();
 	}
 
+	//Retorna a categoria que foi encontrada a partir do ID solicitado.
+	public Categoria buscarPorId(Long id) {
+		
+		return manager.find(Categoria.class, id);
+	}
+	
 }

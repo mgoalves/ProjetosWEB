@@ -13,6 +13,7 @@
 		<!-- Carrega metadatadados para o Browser -->
 		<f:metadata>
 			<!-- Aciona o carregamento da lista de categorias do BD -->
+			<f:viewParam name="TratandoErro" />
 			<f:event listener="#{cadastroProdutoBean.inicializar}"
 				type="preRenderView" />
 		</f:metadata>
@@ -53,7 +54,8 @@
 					value="#{cadastroProdutoBean.produto.nome}" />
 
 				<p:outputLabel value="Categoria" for="categoria" />
-				<p:selectOneMenu id="categoria" styleClass="larguraEntrada">
+				<p:selectOneMenu id="categoria" styleClass="larguraEntrada"
+					value="#{cadastroProdutoBean.categoriaPai}">
 					<f:selectItem itemLabel="Selecione a categoria" />
 					<f:selectItems value="#{cadastroProdutoBean.categoriasRaizes}"
 						var="categoria" itemValue="#{categoria}"
