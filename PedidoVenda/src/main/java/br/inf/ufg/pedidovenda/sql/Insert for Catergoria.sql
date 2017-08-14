@@ -1,16 +1,29 @@
-select 
-*
-from
+delete from categoria where categoria_pai_id is not null;
+delete from categoria;
 
-categoria;
+alter table categoria 
+modify column id int NOT NULL auto_increment;
 
-insert into categoria 
-(id, descricao)
-values
-(1, 'Computadores'),
-(2, 'Notebooks'),
-(3, 'Tablets'),
-(4, 'Smart Wacth'),
-(5, 'Monitores'),
-(6, 'Impressoras'),
-(7, 'Acessórios');
+alter table categoria auto_increment = 1;
+
+insert into categoria (descricao, id) values ('Informática', '1');
+insert into categoria (descricao) values ('Eletrodomésticos');
+insert into categoria (descricao) values ('Móveis');
+
+insert into categoria (descricao, categoria_pai_id) values ('Computadores', 1);
+insert into categoria (descricao, categoria_pai_id) values ('Notebooks', 1);
+insert into categoria (descricao, categoria_pai_id) values ('Tablets', 1);
+insert into categoria (descricao, categoria_pai_id) values ('Monitores', 1);
+insert into categoria (descricao, categoria_pai_id) values ('Impressoras', 1);
+insert into categoria (descricao, categoria_pai_id) values ('Acessórios', 1);
+
+insert into categoria (descricao, categoria_pai_id) values ('Ar condicionados', 2);
+insert into categoria (descricao, categoria_pai_id) values ('Fogões', 2);
+insert into categoria (descricao, categoria_pai_id) values ('Fornos elétricos', 2);
+insert into categoria (descricao, categoria_pai_id) values ('Microondas', 2);
+insert into categoria (descricao, categoria_pai_id) values ('Refrigeradores', 2);
+
+insert into categoria (descricao, categoria_pai_id) values ('Cadeiras', 3);
+insert into categoria (descricao, categoria_pai_id) values ('Mesas', 3);
+insert into categoria (descricao, categoria_pai_id) values ('Racks', 3);
+insert into categoria (descricao, categoria_pai_id) values ('Sofás', 3);

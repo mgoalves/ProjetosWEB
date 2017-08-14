@@ -10,28 +10,31 @@ import br.inf.ufg.pedidovenda.model.produto.Categoria;
 
 public class Categorias implements Serializable {
 
-	
-	//Injeções
+	// Injeções
 	@Inject
 	private EntityManager manager;
-	
-	
-	//Variáveis
+
+	// Variáveis
 	private static final long serialVersionUID = 1L;
-	
-	
+
 	/*
 	 * @Return lista das categorias raizes do banco.
 	 */
 	public List<Categoria> buscarCategoriasRaizes() {
-		
-		return manager.createQuery("from Categoria", Categoria.class).getResultList();
+
+		return manager.createQuery("from Categoria where categoriaPai is null",
+				Categoria.class).getResultList();
 	}
 
-	//Retorna a categoria que foi encontrada a partir do ID solicitado.
+	// Retorna a categoria que foi encontrada a partir do ID solicitado.
 	public Categoria buscarPorId(Long id) {
-		
+
 		return manager.find(Categoria.class, id);
 	}
-	
+
+	public List<Categoria> subCategoriaDe(Categoria categoriaPai) {
+
+		return manager.createQuery("from Categoria where categoriaPai = :raiz", 
+				Categoria.class).setParameter("raiz", categoriaPai).getResultList();
+	}
 }

@@ -11,6 +11,7 @@ import javax.validation.constraints.NotNull;
 import br.inf.ufg.pedidovenda.model.produto.Categoria;
 import br.inf.ufg.pedidovenda.model.produto.Produto;
 import br.inf.ufg.pedidovenda.repository.Categorias;
+import br.inf.ufg.pedidovenda.util.jsf.FacesUtil;
 
 @Named
 @ViewScoped
@@ -22,9 +23,10 @@ public class CadastroProdutoBean implements Serializable {
 	// Variaveis
 	private static final long serialVersionUID = 1L;
 	private Produto produto;
-	private List<Categoria> categoriasRaizes;
 	private Categoria categoriaPai;
-	
+	private List<Categoria> categoriasRaizes;
+	private List<Categoria> subCategorias;
+
 	// Construtor
 	public CadastroProdutoBean() {
 		produto = new Produto();
@@ -35,13 +37,20 @@ public class CadastroProdutoBean implements Serializable {
 	 * Produtos, buscar do banco a lista de Categorias Raízes.
 	 */
 	public void inicializar() {
-		System.out.println("Inicializando...");
-		categoriasRaizes = categorias.buscarCategoriasRaizes();
+
+		if (FacesUtil.isPostNotBack()) {
+			categoriasRaizes = categorias.buscarCategoriasRaizes();
+		}
+	}
+
+	public void carregarSubcategorias() {
+		subCategorias = categorias.subCategoriaDe(categoriaPai);
 	}
 
 	public void salvar() {
-		
+
 		System.out.println("Categoria pai selecionada: " + categoriaPai.getDescricao());
+		System.out.println("Subcategoria selecionada: " + produto.getCategoria().getDescricao());
 	}
 
 	// Getters and Setters -------------------------------------
@@ -60,5 +69,9 @@ public class CadastroProdutoBean implements Serializable {
 
 	public void setCategoriaPai(Categoria categoriaPai) {
 		this.categoriaPai = categoriaPai;
+	}
+
+	public List<Categoria> getSubCategorias() {
+		return subCategorias;
 	}
 }
