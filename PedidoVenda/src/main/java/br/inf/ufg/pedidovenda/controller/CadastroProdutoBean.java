@@ -1,6 +1,7 @@
 package br.inf.ufg.pedidovenda.controller;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ViewScoped;
@@ -11,6 +12,7 @@ import javax.validation.constraints.NotNull;
 import br.inf.ufg.pedidovenda.model.produto.Categoria;
 import br.inf.ufg.pedidovenda.model.produto.Produto;
 import br.inf.ufg.pedidovenda.repository.Categorias;
+import br.inf.ufg.pedidovenda.service.CadastroProdutoService;
 import br.inf.ufg.pedidovenda.util.jsf.FacesUtil;
 
 @Named
@@ -19,6 +21,9 @@ public class CadastroProdutoBean implements Serializable {
 
 	@Inject
 	private Categorias categorias;
+
+	@Inject
+	private CadastroProdutoService cadastroProdutoService;
 
 	// Variaveis
 	private static final long serialVersionUID = 1L;
@@ -29,7 +34,7 @@ public class CadastroProdutoBean implements Serializable {
 
 	// Construtor
 	public CadastroProdutoBean() {
-		produto = new Produto();
+		limpar();
 	}
 
 	/*
@@ -47,10 +52,19 @@ public class CadastroProdutoBean implements Serializable {
 		subCategorias = categorias.subCategoriaDe(categoriaPai);
 	}
 
+	private void limpar() {
+
+		produto = new Produto();
+		categoriaPai = null;
+		subCategorias = new ArrayList<>();		
+	}
+
 	public void salvar() {
 
-		System.out.println("Categoria pai selecionada: " + categoriaPai.getDescricao());
-		System.out.println("Subcategoria selecionada: " + produto.getCategoria().getDescricao());
+		this.produto = cadastroProdutoService.salvar(this.produto);
+
+		limpar();
+		FacesUtil.addInfoMessage("Produto salvo com Sucesso.");
 	}
 
 	// Getters and Setters -------------------------------------
