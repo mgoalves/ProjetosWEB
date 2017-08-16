@@ -13,7 +13,7 @@ import br.inf.ufg.pedidovenda.util.cdi.CDIServiceLocator;
 public class CategoriaConverter implements Converter {
 
 	// @Inject
-	Categorias categorias;
+	private Categorias categorias;
 
 	public CategoriaConverter() {
 		// Retorna uma instancia de um BeanCdi
@@ -23,15 +23,14 @@ public class CategoriaConverter implements Converter {
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
 		Categoria retorno = null;
-
+		
 		if (value != null) {
-
 			Long id = new Long(value);
 			retorno = categorias.buscarPorId(id);
 		}
+		
 		return retorno;
 	}
-
 	/*
 	 * Método recebe um objeto do tipo categoria e retorna um texto.
 	 * 
@@ -40,12 +39,10 @@ public class CategoriaConverter implements Converter {
 	 */
 	@Override
 	public String getAsString(FacesContext context, UIComponent component, Object value) {
-
 		if (value != null) {
 			return ((Categoria) value).getId().toString();
 		}
+		
 		return "";
-
 	}
-
 }

@@ -65,9 +65,9 @@
 				</p:selectOneMenu>
 
 				<p:outputLabel value="Sub Categoria" for="subCategoria" />
-				<p:selectOneMenu id="subCategoria" styleClass="larguraEntrada">
-					<f:selectItem itemLabel="Selecione a Subcategoria"
-						value="#{cadastroProdutoBean.produto.categoria}" />
+				<p:selectOneMenu id="subCategoria" styleClass="larguraEntrada"
+					value="#{cadastroProdutoBean.produto.categoria}">
+					<f:selectItem itemLabel="Selecione a Subcategoria" />
 					<f:selectItems value="#{cadastroProdutoBean.subCategorias}"
 						var="subCategoria" itemValue="#{subCategoria}"
 						itemLabel="#{subCategoria.descricao}" />
