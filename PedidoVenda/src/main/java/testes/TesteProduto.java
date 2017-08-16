@@ -41,7 +41,7 @@ public class TesteProduto {
 		produto.setCategoria(categoriaFilha);
 		produto.setNome("Guaraná 2L");
 		produto.setQuantidadeEstoque(10);
-		produto.setSku("GUA00123");
+		produto.setSku("GU0123");
 		produto.setValorUnitario(new BigDecimal(2.21));
 		
 		manager.persist(produto);
