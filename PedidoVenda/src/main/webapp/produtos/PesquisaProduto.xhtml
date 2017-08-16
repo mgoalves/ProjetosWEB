@@ -13,13 +13,16 @@
 		<h:form id="frm">
 			<!-- Titulo da página -->
 			<h1 id="titulo-pagina">Pesquisa de Produto</h1>
+			
+			<p:messages autoUpdate="true" closable="true" />
 
 			<!-- Barra de ferramentas que armazena os botões de ação
 			 Sendo os mesmos agrupados por categoria
 		 -->
 			<p:toolbar>
 				<p:toolbarGroup>
-					<p:commandButton value="Pesquisar" />
+					<p:commandButton value="Pesquisar"
+						action="#{pesquisaProdutoBean.pesquisar}" update="@form" />
 				</p:toolbarGroup>
 
 				<p:toolbarGroup align="right">
@@ -28,15 +31,17 @@
 			</p:toolbar>
 
 
-			<!-- Formulário padrão para cadastro de produtos -->
+			<!-- Formulário padrão para pesquisa de produtos -->
 			<p:panelGrid columns="2" id="painel" styleClass="painel"
 				columnClasses="rotulo, campo">
 
 				<p:outputLabel value="SKU" for="sku" />
-				<p:inputText id="sku" size="20" maxlength="120" />
+				<p:inputText id="sku" size="20" maxlength="120"
+					value="#{pesquisaProdutoBean.filtro.sku}" required="false" />
 
 				<p:outputLabel value="Nome" for="nome" />
-				<p:inputText id="nome" size="60" maxlength="120" />
+				<p:inputText id="nome" size="60" maxlength="120"
+					value="#{pesquisaProdutoBean.filtro.nome}"  required="false" />
 			</p:panelGrid>
 
 
@@ -48,30 +53,38 @@
 				paginatorPosition="bottom">
 
 				<p:column headerText="SKU" styleClass="colunaPri">
-					<h:outputText value="123" />
+					<h:outputText value="#{produto.sku}" />
 				</p:column>
 				<p:column headerText="Nome">
-					<h:outputText value="Bala de Morango" />
+					<h:outputText value="#{produto.nome}" />
 				</p:column>
 				<p:column headerText="Categoria" styleClass="colunaTri">
-					<h:outputText value="Doces - Balas e chicletes" />
+					<h:outputText
+						value="#{produto.categoria.categoriaPai.descricao} - #{produto.categoria.descricao}" />
 				</p:column>
 				<p:column headerText="Valor Unitário" styleClass="colunaQua">
-					<h:outputText value="R$ 1,20" />
+					<h:outputText value="#{produto.valorUnitario}">
+						<f:convertNumber type="currency" />
+					</h:outputText>
 				</p:column>
 				<p:column headerText="Estoque" styleClass="colunaPri">
-					<h:outputText value="98" />
+					<h:outputText value="#{produto.quantidadeEstoque}" />
 				</p:column>
 				<p:column headerText="Ações" styleClass="colunaPri">
 					<p:button icon="ui-icon-pencil" title="Editar" />
-					<p:commandButton icon="ui-icon-trash" title="Excluir" oncomplete="PF('confirmacaoExclusao').show()"/>
+					<p:commandButton icon="ui-icon-trash" title="Excluir"
+						oncomplete="PF('confirmacaoExclusao').show()" />
 				</p:column>
 			</p:dataTable>
 
-			<p:confirmDialog header="Exclusão de Produto" id="confirmacaoExclusaoDialog"
-				message="Tem certeza que deseja excluir o produto?" widgetVar="confirmacaoExclusao" >
-				<p:button value="Não" onclick="PF('confirmacaoExclusao').hide(); return false;" />
-				<p:commandButton value="Sim" oncomplete="PF('confirmacaoExclusao').hide();"/>
+			<p:confirmDialog header="Exclusão de Produto"
+				id="confirmacaoExclusaoDialog"
+				message="Tem certeza que deseja excluir o produto?"
+				widgetVar="confirmacaoExclusao">
+				<p:button value="Não"
+					onclick="PF('confirmacaoExclusao').hide(); return false;" />
+				<p:commandButton value="Sim"
+					oncomplete="PF('confirmacaoExclusao').hide();" />
 			</p:confirmDialog>
 
 		</h:form>

@@ -1,11 +1,15 @@
 package br.inf.ufg.pedidovenda.controller;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
+
+import br.inf.ufg.pedidovenda.model.produto.Produto;
+import br.inf.ufg.pedidovenda.repository.ProdutoFilter;
+import br.inf.ufg.pedidovenda.repository.Produtos;
 
 
 @Named
@@ -13,21 +17,34 @@ import javax.inject.Named;
 public class PesquisaProdutoBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
-	private List<Integer> produtosFiltrados;
 
+	
+	@Inject
+	private Produtos produtos;
+	
+	//Variaveis
+	private ProdutoFilter filtro;
+	private List<Produto> produtosFiltrados;
+
+	
+	
 	public PesquisaProdutoBean() {
 
-		produtosFiltrados = new ArrayList<>();
-
-		for (int i = 0; i < 50; i++) {
-
-			produtosFiltrados.add(i);
-			
-		}
+		filtro = new ProdutoFilter();
 	}
+
+
+	public void pesquisar() {
+		
+		produtosFiltrados = produtos.filtrados(filtro);
+	}
+
 	
-	public List<Integer> getProdutoFiltrados() {
+	//Getters and Setters
+	public ProdutoFilter getFiltro() {
+		return filtro;
+	}
+	public List<Produto> getProdutoFiltrados() {
 
 		return produtosFiltrados;
 	}

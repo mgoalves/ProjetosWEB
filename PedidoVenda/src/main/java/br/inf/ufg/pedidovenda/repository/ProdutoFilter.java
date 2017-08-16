@@ -19,7 +19,7 @@ public class ProdutoFilter implements Serializable {
 		return sku;
 	}
 	public void setSku(String sku) {
-		this.sku = sku;
+		this.sku = sku == null ? null : sku.toUpperCase();
 	}
 	public String getNome() {
 		return nome;

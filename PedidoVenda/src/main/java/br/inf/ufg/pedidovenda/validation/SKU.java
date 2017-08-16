@@ -13,11 +13,11 @@ import javax.validation.constraints.Pattern;
 @Target({ElementType.FIELD, ElementType.METHOD, ElementType.ANNOTATION_TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = {})
-@Pattern(regexp = "[A-Z]{2}\\d{4,18}")
+@Pattern(regexp = "([a-zA-Z]{2}\\d{4,18})?")
 public @interface SKU {
 
 	@OverridesAttribute(constraint = Pattern.class, name = "message")
-	String message() default "{br.inf.ufg..constraints.SKU.message}";
+	String message() default "{br.inf.ufg.pedidovenda.constraints.SKU.message}";
 	
 	Class<?>[] groups() default {};
 	
