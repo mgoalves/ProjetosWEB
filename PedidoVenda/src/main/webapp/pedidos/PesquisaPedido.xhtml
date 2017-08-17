@@ -15,16 +15,21 @@
 			<!-- Titulo da página -->
 			<h1 id="titulo-pe-pagina">Pesquisa de Pedidos</h1>
 
+
+			<f:event listener="#{pesquisaPedidoBean.pesquisar}"
+				type="preRenderView" />
+
 			<!-- Barra de ferramentas que armazena os botões de ação
 			 Sendo os mesmos agrupados por categoria
 		 	-->
 			<p:toolbar>
 				<p:toolbarGroup>
-					<p:commandButton value="Pesquisar" />
+					<p:commandButton value="Pesquisar"
+						action="#{pesquisaPedidoBean.pesquisar}" update="@form" />
 				</p:toolbarGroup>
 
 				<p:toolbarGroup align="right">
-					<p:button value="Novo" outcome="/pedidos/CadastroPedido"/>
+					<p:button value="Novo" outcome="/pedidos/CadastroPedido" />
 				</p:toolbarGroup>
 			</p:toolbar>
 
@@ -33,31 +38,36 @@
 			<p:panelGrid columns="2" id="painel-pe" styleClass="painel-pe"
 				columnClasses="rotulo-pe, campo">
 
-				<p:outputLabel value="Número"/>
+				<p:outputLabel value="Número" />
 				<h:panelGroup>
-					<p:inputText size="10" maxlength="15" />
+					<p:inputText size="10" maxlength="15"
+						value="#{pesquisaPedidoBean.filter.numeroDe}" />
 					a
-					<p:inputText size="10" maxlength="15" />
+					<p:inputText size="10" maxlength="15"
+						value="#{pesquisaPedidoBean.filter.numeroAte}" />
 				</h:panelGroup>
-				
-				<p:outputLabel value="Data de criação"/>
+
+				<p:outputLabel value="Data de criação" />
 				<h:panelGroup>
-					<p:calendar size="10" pattern="dd/MM/yyyy" />
+					<p:calendar size="10" pattern="dd/MM/yyyy"
+						value="#{pesquisaPedidoBean.filter.dataCriacaoDe}" />
 					a
-					<p:calendar size="10" pattern="dd/MM/yyyy" />
+					<p:calendar size="10" pattern="dd/MM/yyyy"
+						value="#{pesquisaPedidoBean.filter.dataCriacaoAte}" />
 				</h:panelGroup>
-				
-				<p:outputLabel value="Vendedor" for="vendedor"/>
-				<p:inputText id="vendedor" size="40" maxlength="120"/>
-				
-				<p:outputLabel value="Cliente" for="cliente"/>
-				<p:inputText id="cliente" size="40" maxlength="120"/>
-				
-				<p:outputLabel value="Status"/>
-				<p:selectManyCheckbox>
-					<f:selectItem itemLabel="Orçamento"/>
-					<f:selectItem itemLabel="Emitido"/>
-					<f:selectItem itemLabel="Cancelado"/>
+
+				<p:outputLabel value="Vendedor" for="vendedor" />
+				<p:inputText id="vendedor" size="40" maxlength="120"
+					value="#{pesquisaPedidoBean.filter.nomeVendedor}" />
+
+				<p:outputLabel value="Cliente" for="cliente" />
+				<p:inputText id="cliente" size="40" maxlength="120"
+					value="#{pesquisaPedidoBean.filter.nomeCliente}" />
+
+				<p:outputLabel value="Status" />
+				<p:selectManyCheckbox value="#{pesquisaPedidoBean.filter.status}">
+					<f:selectItems value="#{pesquisaPedidoBean.status}" var="status"
+						itemValue="#{status}" itemLabel="#{status.descricao}" />
 				</p:selectManyCheckbox>
 			</p:panelGrid>
 
@@ -65,31 +75,35 @@
 
 			<!-- Grid que retorna o resultado da pesquisa, podendo o mesmo ser dividido em páginas -->
 			<p:dataTable id="pedidosTable"
-				value="#{pesquisaPedidoBean.pedidosFiltrado}" var="pedido"
+				value="#{pesquisaPedidoBean.pedidosFiltrados}" var="pedido"
 				emptyMessage="Nunhum pedido encontrado." rows="20" paginator="true"
 				paginatorAlwaysVisible="false" styleClass="pedidosTable"
 				paginatorPosition="bottom">
-	
+
 				<p:column headerText="Número" styleClass="colunaPePri">
-					<h:outputText value="12345"/>
+					<h:outputText value="#{pedido.id}" />
 				</p:column>
 				<p:column headerText="Cliente" styleClass="">
-					<h:outputText value="Supermercado das Goiania"/>
+					<h:outputText value="#{pedido.cliente.nome}" />
 				</p:column>
 				<p:column headerText="Vendedor" styleClass="">
-					<h:outputText value="José Junior"/>
+					<h:outputText value="#{pedido.vendedor.nome}" />
 				</p:column>
-				<p:column headerText="Cliente" styleClass="colunaPeQua">
-					<h:outputText value="05/06/2017"/>
+				<p:column headerText="Data" styleClass="colunaPeQua">
+					<h:outputText value="#{pedido.dataCriacao}" >
+						<f:convertDateTime pattern="dd/MM/yyy"/>
+					</h:outputText>
 				</p:column>
 				<p:column headerText="Valor Total" styleClass="colunaPeQui">
-					<h:outputText value="RS 1230,44"/>
+					<h:outputText value="#{pedido.valorTotal}" >
+						<f:convertNumber type="currency"/>
+					</h:outputText>
 				</p:column>
 				<p:column headerText="Status" styleClass="colunaPeSex">
-					<h:outputText value="Emitido"/>
+					<h:outputText value="#{pedido.status.descricao}" />
 				</p:column>
 				<p:column headerText="Ações" styleClass="colunaPeSet">
-					<p:button icon="ui-icon-pencil" title="title"/>
+					<p:button icon="ui-icon-pencil" title="Editar" />
 				</p:column>
 			</p:dataTable>
 
