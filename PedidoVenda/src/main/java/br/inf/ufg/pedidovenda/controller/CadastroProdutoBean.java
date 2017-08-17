@@ -43,7 +43,7 @@ public class CadastroProdutoBean implements Serializable {
 	 */
 	public void inicializar() {
 
-		 this.produto = new Produto();
+		 //this.produto = new Produto();
 		    if (FacesUtil.isPostNotBack()) {
 		        categoriasRaizes = categorias.buscarCategoriasRaizes();
 		        if (this.categoriaPai != null) {
@@ -79,6 +79,15 @@ public class CadastroProdutoBean implements Serializable {
 		return produto;
 	}
 
+	public void setProduto(Produto produto) {
+		
+		this.produto = produto;
+		if(this.produto != null) {
+			
+			this.categoriaPai = this.produto.getCategoria().getCategoriaPai();
+		}
+	}
+
 	public List<Categoria> getCategoriasRaizes() {
 		return categoriasRaizes;
 	}
@@ -94,5 +103,10 @@ public class CadastroProdutoBean implements Serializable {
 
 	public List<Categoria> getSubCategorias() {
 		return subCategorias;
+	}
+	
+	public boolean isEditando() {
+		
+		return this.produto.getId() != null;
 	}
 }

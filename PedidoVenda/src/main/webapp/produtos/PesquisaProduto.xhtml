@@ -13,7 +13,7 @@
 		<h:form id="frm">
 			<!-- Titulo da página -->
 			<h1 id="titulo-pagina">Pesquisa de Produto</h1>
-			
+
 			<p:messages autoUpdate="true" closable="true" />
 
 			<!-- Barra de ferramentas que armazena os botões de ação
@@ -41,7 +41,7 @@
 
 				<p:outputLabel value="Nome" for="nome" />
 				<p:inputText id="nome" size="60" maxlength="120"
-					value="#{pesquisaProdutoBean.filtro.nome}"  required="false" />
+					value="#{pesquisaProdutoBean.filtro.nome}" required="false" />
 			</p:panelGrid>
 
 
@@ -71,7 +71,10 @@
 					<h:outputText value="#{produto.quantidadeEstoque}" />
 				</p:column>
 				<p:column headerText="Ações" styleClass="colunaPri">
-					<p:button icon="ui-icon-pencil" title="Editar" />
+					<p:button outcome="/produtos/CadastroProduto" icon="ui-icon-pencil"
+						title="Editar">
+						<f:param name="produto" value="#{produto.id}" />
+					</p:button>
 					<p:commandButton icon="ui-icon-trash" title="Excluir"
 						oncomplete="PF('confirmacaoExclusao').show()" />
 				</p:column>

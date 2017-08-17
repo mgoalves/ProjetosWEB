@@ -70,6 +70,15 @@
 			<scope>compile</scope>
 		</dependency>
 
+		<!-- OmniFaces -->
+		<dependency>
+			<groupId>org.omnifaces</groupId>
+			<artifactId>omnifaces</artifactId>
+			<version>1.5</version>
+			<scope>compile</scope>
+		</dependency>
+
+
 		<!-- Log4J -->
 		<dependency>
 			<groupId>log4j</groupId>
