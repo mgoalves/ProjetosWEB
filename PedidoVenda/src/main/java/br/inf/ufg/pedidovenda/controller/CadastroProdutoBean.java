@@ -43,13 +43,13 @@ public class CadastroProdutoBean implements Serializable {
 	 */
 	public void inicializar() {
 
-		 //this.produto = new Produto();
-		    if (FacesUtil.isPostNotBack()) {
-		        categoriasRaizes = categorias.buscarCategoriasRaizes();
-		        if (this.categoriaPai != null) {
-		            carregarSubcategorias();
-		        }
-		    }
+		// this.produto = new Produto();
+		if (FacesUtil.isPostNotBack()) {
+			categoriasRaizes = categorias.buscarCategoriasRaizes();
+			if (this.categoriaPai != null) {
+				carregarSubcategorias();
+			}
+		}
 	}
 
 	public void carregarSubcategorias() {
@@ -60,18 +60,22 @@ public class CadastroProdutoBean implements Serializable {
 
 		produto = new Produto();
 		categoriaPai = null;
-		subCategorias = new ArrayList<>();		
+		subCategorias = new ArrayList<>();
 	}
 
 	public void salvar() {
 
 		System.out.println("Categoria: " + this.produto.getCategoria());
 		System.out.println("Nome: " + this.produto.getNome());
-		
-		
+
 		this.produto = cadastroProdutoService.salvar(this.produto);
 		limpar();
 		FacesUtil.addInfoMessage("Produto salvo com Sucesso.");
+	}
+
+	public boolean isEditando() {
+
+		return this.produto.getId() != null;
 	}
 
 	// Getters and Setters -------------------------------------
@@ -80,10 +84,10 @@ public class CadastroProdutoBean implements Serializable {
 	}
 
 	public void setProduto(Produto produto) {
-		
+
 		this.produto = produto;
-		if(this.produto != null) {
-			
+		if (this.produto != null) {
+
 			this.categoriaPai = this.produto.getCategoria().getCategoriaPai();
 		}
 	}
@@ -104,9 +108,5 @@ public class CadastroProdutoBean implements Serializable {
 	public List<Categoria> getSubCategorias() {
 		return subCategorias;
 	}
-	
-	public boolean isEditando() {
-		
-		return this.produto.getId() != null;
-	}
+
 }

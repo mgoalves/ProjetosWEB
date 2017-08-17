@@ -10,11 +10,14 @@
 	<!-- Página responsável por cadastro de novos produtos -->
 	<ui:define name="corpo">
 
-		<h:form id="frm">
+		<h:form id="frmPesquisa">
 			<!-- Titulo da página -->
 			<h1 id="titulo-pagina">Pesquisa de Produto</h1>
 
 			<p:messages autoUpdate="true" closable="true" />
+			
+			<f:event listener="#{pesquisaProdutoBean.pesquisar}"
+				type="preRenderView" />
 
 			<!-- Barra de ferramentas que armazena os botões de ação
 			 Sendo os mesmos agrupados por categoria
@@ -71,24 +74,33 @@
 					<h:outputText value="#{produto.quantidadeEstoque}" />
 				</p:column>
 				<p:column headerText="Ações" styleClass="colunaPri">
+					<p:button outcome="/produtos/CadastroProduto" icon="ui-icon-pencil" title="Editar">
+	    				<f:param name="produto" value="#{produto.id}" />
+	    			</p:button>
+	    			<p:commandButton icon="ui-icon-trash" title="Excluir" oncomplete="confirmacaoExclusao.show()"
+	    					process="@this" update=":frmPesquisa:confirmacaoExclusaoDialog">
+	    				<f:setPropertyActionListener target="#{pesquisaProdutoBean.produtoSelecionado}" 
+	    					value="#{produto}" />
+	    			</p:commandButton>
+					
+					<!-- Novas versões do primefaces
 					<p:button outcome="/produtos/CadastroProduto" icon="ui-icon-pencil"
 						title="Editar">
 						<f:param name="produto" value="#{produto.id}" />
 					</p:button>
 					<p:commandButton icon="ui-icon-trash" title="Excluir"
-						oncomplete="PF('confirmacaoExclusao').show()" />
+						oncomplete="PF('confirmacaoExclusao').show()" /> -->
 				</p:column>
 			</p:dataTable>
 
-			<p:confirmDialog header="Exclusão de Produto"
-				id="confirmacaoExclusaoDialog"
-				message="Tem certeza que deseja excluir o produto?"
-				widgetVar="confirmacaoExclusao">
-				<p:button value="Não"
-					onclick="PF('confirmacaoExclusao').hide(); return false;" />
-				<p:commandButton value="Sim"
-					oncomplete="PF('confirmacaoExclusao').hide();" />
-			</p:confirmDialog>
+			<p:confirmDialog header="Exclusão de produto" 
+	    		message="Tem certeza que deseja excluir o produto #{pesquisaProdutosBean.produtoSelecionado.sku}?"
+	    		widgetVar="confirmacaoExclusao"	id="confirmacaoExclusaoDialog">
+	    		<p:button value="Não" onclick="confirmacaoExclusao.hide(); return false;" />
+	    		<p:commandButton value="Sim" oncomplete="confirmacaoExclusao.hide();"
+	    			action="#{pesquisaProdutoBean.excluir}" process="@this"
+	    			update=":frmPesquisa:produtosTable" />
+	    	</p:confirmDialog>
 
 		</h:form>
 

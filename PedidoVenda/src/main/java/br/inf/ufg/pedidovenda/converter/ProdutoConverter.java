@@ -31,6 +31,7 @@ public class ProdutoConverter implements Converter {
 		
 		return retorno;
 	}
+
 	/*
 	 * Método recebe um objeto do tipo categoria e retorna um texto.
 	 * 
@@ -43,6 +44,8 @@ public class ProdutoConverter implements Converter {
 			Produto produto = (Produto) value;
 			return produto.getId() == null ? null : produto.getId().toString();
 		}
+		
 		return "";
 	}
+
 }
