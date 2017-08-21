@@ -34,7 +34,7 @@ public class Pedidos implements Serializable {
 				.createAlias("vendedor", "v");
 
 		if (filtro.getNumeroDe() != 0) {
-			// id deve ser maior ou igual (ge = greater or equals) a
+			// id deve ser maior ou equal (ge = greater or equals) a
 			// filtro.numeroDe
 			criteria.add(Restrictions.ge("id", filtro.getNumeroDe()));
 		}
