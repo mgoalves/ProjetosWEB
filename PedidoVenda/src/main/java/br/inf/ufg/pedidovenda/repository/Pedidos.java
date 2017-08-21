@@ -33,13 +33,13 @@ public class Pedidos implements Serializable {
 				// "v"
 				.createAlias("vendedor", "v");
 
-		if (filtro.getNumeroDe() != 0) {
+		if (filtro.getNumeroDe() != null) {
 			// id deve ser maior ou equal (ge = greater or equals) a
 			// filtro.numeroDe
 			criteria.add(Restrictions.ge("id", filtro.getNumeroDe()));
 		}
 
-		if (filtro.getNumeroAte() != 0) {
+		if (filtro.getNumeroAte() != null) {
 			// id deve ser menor ou igual (le = lower or equal) a
 			// filtro.numeroDe
 			criteria.add(Restrictions.le("id", filtro.getNumeroAte()));
@@ -72,6 +72,11 @@ public class Pedidos implements Serializable {
 		}
 
 		return criteria.addOrder(Order.asc("id")).list();
+	}
+
+	public Pedido guardar(Pedido pedido) {
+		
+		return this.manager.merge(pedido);
 	}
 
 }

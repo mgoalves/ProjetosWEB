@@ -11,8 +11,8 @@ public class PedidoFilter implements Serializable{
 
 	
 	//Variavéis
-	private long numeroDe;
-	private long numeroAte;
+	private Long numeroDe;
+	private Long numeroAte;
 	private Date dataCriacaoDe;
 	private Date dataCriacaoAte;
 	private String nomeVendedor;
@@ -20,16 +20,16 @@ public class PedidoFilter implements Serializable{
 	private StatusPedido[] status;
 	
 	//Getters and Setters
-	public long getNumeroDe() {
+	public Long getNumeroDe() {
 		return numeroDe;
 	}
-	public void setNumeroDe(long numeroDe) {
+	public void setNumeroDe(Long numeroDe) {
 		this.numeroDe = numeroDe;
 	}
-	public long getNumeroAte() {
+	public Long getNumeroAte() {
 		return numeroAte;
 	}
-	public void setNumeroAte(long numeroAte) {
+	public void setNumeroAte(Long numeroAte) {
 		this.numeroAte = numeroAte;
 	}
 	public Date getDataCriacaoDe() {

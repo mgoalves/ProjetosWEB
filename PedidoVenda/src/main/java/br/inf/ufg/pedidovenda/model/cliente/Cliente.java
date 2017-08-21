@@ -20,7 +20,7 @@ public class Cliente implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	private long id;
+	private Long id;
 	private String nome;
 	private String email;
 	private String docReceitaFederal;
@@ -34,7 +34,7 @@ public class Cliente implements Serializable {
 	//Getters and Setters -----------------------------------------------
 	@Id
 	@GeneratedValue
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 	public void setId(long id) {
