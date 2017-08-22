@@ -17,77 +17,88 @@ import br.inf.ufg.pedidovenda.repository.Usuarios;
 import br.inf.ufg.pedidovenda.service.CadastroPedidoService;
 import br.inf.ufg.pedidovenda.util.jsf.FacesUtil;
 
-
 @Named
 @ViewScoped
 public class CadastroPedidoBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	//Injeções
+	// Injeções
 	@Inject
 	private Usuarios usuarios;
 	@Inject
 	private Clientes clientes;
 	@Inject
 	private CadastroPedidoService cadService;
-	
-	//Variaveis
+
+	// Variaveis
 	private Pedido pedido;
 	private List<Usuario> vendedores;
 
-
-
+	// Construtor da Classe
 	public CadastroPedidoBean() {
-		
+
 		limpar();
 	}
-	
+
 	public void limpar() {
-		
+
 		pedido = new Pedido();
 		pedido.setEnderecoEntrega(new EnderecoEntrega());
 	}
 
 	public void salvar() {
-	
+
 		this.pedido = this.cadService.salvar(this.pedido);
 		limpar();
 		FacesUtil.addInfoMessage("Pedido salvo com sucesso.");
 	}
 
 	public void inicializar() {
-		
-		if(FacesUtil.isPostNotBack()) {
-			
+
+		if (FacesUtil.isPostNotBack()) {
+
 			this.vendedores = this.usuarios.buscarPorNome();
+			this.pedido.recalcularValorTotal();
 		}
 	}
-	
+
 	// Atualiza na página as formas de Pagamento disponiveis
 	public FormaPagamento[] getFormasPagamento() {
-		
+
 		return FormaPagamento.values();
 	}
-	
+
 	// Busca do banco a lista de clientes para exibição na página
 	public List<Cliente> completarCliente(String nome) {
 		return this.clientes.buscarPorNome(nome);
 	}
-	
-	//Método que verifica se existe algum pedido instanciado ou não para cadastro ou edição
+
+	// Método que verifica se existe algum pedido instanciado ou não para
+	// cadastro ou edição
 	public boolean isEditando() {
-		
+
 		return this.pedido.getId() == null;
 	}
 
-	//Getter and Setters
+	// Método que recalcula o valor do Total baseado no frete e desconto.
+	public void recalcularPedido() {
+		
+		if (this.pedido != null) {
+			
+			this.pedido.recalcularValorTotal();
+		}
+	}
+
+	// Getter and Setters
 	public List<Usuario> getVendedores() {
 		return vendedores;
 	}
+
 	public void setPedido(Pedido pedido) {
 		this.pedido = pedido;
 	}
+
 	public Pedido getPedido() {
 		return pedido;
 	}

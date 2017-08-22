@@ -216,4 +216,27 @@ public class Pedido implements Serializable {
 		return true;
 	}
 
+	@Transient
+	public BigDecimal getValorSubTotal() {
+		
+		return this.getValorTotal().subtract(getValorFrete()).add(getValorDesconto());
+	}
+	
+	public void recalcularValorTotal() {
+		BigDecimal total = BigDecimal.ZERO;
+		
+		total = total.add(getValorFrete());
+		total = total.subtract(getValorDesconto());
+		
+		for (ItemPedido item: this.getItens()) {
+			
+			if (item.getProduto() != null && item.getProduto().getId() != null) {
+				
+				total = total.add(item.getValorTotal());
+			}
+		}
+		
+		this.setValorTotal(total);
+	}
+
 }
