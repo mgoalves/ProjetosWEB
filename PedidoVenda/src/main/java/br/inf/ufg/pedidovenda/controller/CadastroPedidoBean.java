@@ -1,7 +1,6 @@
 package br.inf.ufg.pedidovenda.controller;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ViewScoped;
@@ -65,18 +64,29 @@ public class CadastroPedidoBean implements Serializable {
 		}
 	}
 	
+	// Atualiza na página as formas de Pagamento disponiveis
 	public FormaPagamento[] getFormasPagamento() {
 		
 		return FormaPagamento.values();
 	}
 	
+	// Busca do banco a lista de clientes para exibição na página
 	public List<Cliente> completarCliente(String nome) {
 		return this.clientes.buscarPorNome(nome);
+	}
+	
+	//Método que verifica se existe algum pedido instanciado ou não para cadastro ou edição
+	public boolean isEditando() {
+		
+		return this.pedido.getId() == null;
 	}
 
 	//Getter and Setters
 	public List<Usuario> getVendedores() {
 		return vendedores;
+	}
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
 	}
 	public Pedido getPedido() {
 		return pedido;

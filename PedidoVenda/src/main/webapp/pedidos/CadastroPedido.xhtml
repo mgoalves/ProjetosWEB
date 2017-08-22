@@ -3,13 +3,17 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:o="http://omnifaces.org/ui">
 
-	<ui:define name="titulo">Novo Pedido</ui:define>
-	
+	<!-- Metadados carregados antes da página ser carregada -->
 	<f:metadata>
-		<f:event listener="#{cadastroPedidoBean.inicializar}" type="preRenderView"/>
+		<o:viewParam name="pedido" value="#{cadastroPedidoBean.pedido}"></o:viewParam>
+		<f:event listener="#{cadastroPedidoBean.inicializar}"
+			type="preRenderView" />
 	</f:metadata>
+
+	<ui:define name="titulo">#{cadastroPedidoBean.editando ? 'Novo Pedido' : 'Edição de Pedido'}</ui:define>
 
 	<!-- Página responsável por cadastro de novos pedidos -->
 	<ui:define name="corpo">
@@ -17,9 +21,9 @@
 		<h:form id="frm">
 
 			<!-- Titulo da página -->
-			<h1 id="titulo-pe-pagina">Cadastro de pedido</h1>
-			
-			<p:messages autoUpdate="true" closable="true"/>
+			<h1 id="titulo-pe-pagina">#{cadastroPedidoBean.editando ? 'Novo Pedido' : 'Edição de Pedido'}</h1>
+
+			<p:messages autoUpdate="true" closable="true" />
 
 			<!-- Barra de Botões-->
 			<ui:include src="/WEB-INF/Template/pedidos/BotaoPedido.xhtml"></ui:include>
@@ -30,15 +34,14 @@
 			<!-- TabView com com dados do pedido -->
 			<p:tabView styleClass="painel-pe">
 				<p:tab title="Itens">
-				<!--  	<ui:include src="/WEB-INF/Template/pedidos/ItensPedido.xhtml"></ui:include> -->
+					<!--  	<ui:include src="/WEB-INF/Template/pedidos/ItensPedido.xhtml"></ui:include> -->
 				</p:tab>
 				<p:tab title="Dados da Entrega">
 					<ui:include
 						src="/WEB-INF/Template/pedidos/DadosEntregaPedido.xhtml"></ui:include>
 				</p:tab>
 				<p:tab title="Observação">
-					<ui:include
-						src="/WEB-INF/Template/pedidos/ObservacaoPedido.xhtml"></ui:include>
+					<ui:include src="/WEB-INF/Template/pedidos/ObservacaoPedido.xhtml"></ui:include>
 				</p:tab>
 			</p:tabView>
 
