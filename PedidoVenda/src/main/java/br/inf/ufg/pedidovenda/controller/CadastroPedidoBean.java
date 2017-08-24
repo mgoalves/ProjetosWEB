@@ -7,15 +7,21 @@ import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.apache.commons.lang3.StringUtils;
+
 import br.inf.ufg.pedidovenda.model.Usuario;
 import br.inf.ufg.pedidovenda.model.cliente.Cliente;
 import br.inf.ufg.pedidovenda.model.pedido.EnderecoEntrega;
 import br.inf.ufg.pedidovenda.model.pedido.FormaPagamento;
+import br.inf.ufg.pedidovenda.model.pedido.ItemPedido;
 import br.inf.ufg.pedidovenda.model.pedido.Pedido;
+import br.inf.ufg.pedidovenda.model.produto.Produto;
 import br.inf.ufg.pedidovenda.repository.Clientes;
+import br.inf.ufg.pedidovenda.repository.Produtos;
 import br.inf.ufg.pedidovenda.repository.Usuarios;
 import br.inf.ufg.pedidovenda.service.CadastroPedidoService;
 import br.inf.ufg.pedidovenda.util.jsf.FacesUtil;
+import br.inf.ufg.pedidovenda.validation.SKU;
 
 @Named
 @ViewScoped
@@ -30,10 +36,14 @@ public class CadastroPedidoBean implements Serializable {
 	private Clientes clientes;
 	@Inject
 	private CadastroPedidoService cadService;
+	@Inject
+	private Produtos produtos;
 
 	// Variaveis
 	private Pedido pedido;
 	private List<Usuario> vendedores;
+	private Produto produtoLinhaEditavel;
+	private String sku;
 
 	// Construtor da Classe
 	public CadastroPedidoBean() {
@@ -45,6 +55,7 @@ public class CadastroPedidoBean implements Serializable {
 
 		pedido = new Pedido();
 		pedido.setEnderecoEntrega(new EnderecoEntrega());
+		sku = null;
 	}
 
 	public void salvar() {
@@ -58,6 +69,7 @@ public class CadastroPedidoBean implements Serializable {
 
 		if (FacesUtil.isPostNotBack()) {
 
+			this.pedido.adicionarItemVazio();
 			this.vendedores = this.usuarios.buscarPorNome();
 			this.pedido.recalcularValorTotal();
 		}
@@ -83,14 +95,69 @@ public class CadastroPedidoBean implements Serializable {
 
 	// Método que recalcula o valor do Total baseado no frete e desconto.
 	public void recalcularPedido() {
-		
+
 		if (this.pedido != null) {
-			
+
 			this.pedido.recalcularValorTotal();
 		}
 	}
 
+	// Método que auto completa os produtos Digitados pelo usuário.
+	public List<Produto> completarProduto(String nome) {
+
+		return this.produtos.buscarPorNome(nome);
+	}
+
+	//
+	public void carregarProdutoLinhaEditavel() {
+
+		ItemPedido item = this.pedido.getItens().get(0);
+
+		if (this.produtoLinhaEditavel != null) {
+
+			if (this.existeItemComProduto(this.produtoLinhaEditavel)) {
+
+				FacesUtil.addErrorMessage("Já existe um item no pedido com o produto informado.");
+			} else {
+
+				item.setProduto(produtoLinhaEditavel);
+				item.setValorUnitario(this.produtoLinhaEditavel.getValorUnitario());
+
+				this.pedido.adicionarItemVazio();
+				this.produtoLinhaEditavel = null;
+				this.sku = null;
+
+				this.pedido.recalcularValorTotal();
+			}
+		}
+	}
+
+	private boolean existeItemComProduto(Produto produto) {
+
+		boolean existeItem = false;
+		
+		for (ItemPedido item : this.getPedido().getItens()) {
+			
+			if(produto.equals(item.getProduto())) {
+				existeItem = true;
+				break;
+			}				
+		}
+		
+		return existeItem;
+	}
+
+	public void carregarPorSku() {
+
+		if (StringUtils.isNotEmpty(this.sku)) {
+
+			this.produtoLinhaEditavel = this.produtos.porSku(this.sku);
+			this.carregarProdutoLinhaEditavel();
+		}
+	}
+
 	// Getter and Setters
+	// =========================================================================
 	public List<Usuario> getVendedores() {
 		return vendedores;
 	}
@@ -101,6 +168,23 @@ public class CadastroPedidoBean implements Serializable {
 
 	public Pedido getPedido() {
 		return pedido;
+	}
+
+	public Produto getProdutoLinhaEditavel() {
+		return produtoLinhaEditavel;
+	}
+
+	public void setProdutoLinhaEditavel(Produto produtoLinhaEditavel) {
+		this.produtoLinhaEditavel = produtoLinhaEditavel;
+	}
+
+	@SKU
+	public String getSku() {
+		return sku;
+	}
+
+	public void setSku(String sku) {
+		this.sku = sku;
 	}
 
 }

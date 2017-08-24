@@ -56,18 +56,17 @@ public class Produtos implements Serializable {
 		}
 
 		return criteria.addOrder(Order.asc("nome")).list();
-		
+
 	}
 
 	public Produto buscarPorId(Long id) {
-		
+
 		return manager.find(Produto.class, id);
 	}
 
-	
 	/*
-	 * Função que remove por meio de parametros um 
-	 * objeto do tipo produto do banco de dados.
+	 * Função que remove por meio de parametros um objeto do tipo produto do
+	 * banco de dados.
 	 */
 	@Transactional
 	public void remover(Produto produto) {
@@ -78,6 +77,12 @@ public class Produtos implements Serializable {
 		} catch (PersistenceException e) {
 			throw new NegocioException("Produto não pode ser excluído.");
 		}
+	}
+
+	public List<Produto> buscarPorNome(String nome) {
+
+		return this.manager.createQuery("from Produto where upper(nome) like :nome", Produto.class)
+				.setParameter("nome", "%" + nome.toUpperCase() + "%").getResultList();
 	}
 
 }

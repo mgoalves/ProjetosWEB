@@ -18,7 +18,7 @@
 	<!-- Página responsável por cadastro de novos pedidos -->
 	<ui:define name="corpo">
 
-		<h:form id="frm">
+		<h:form id="frmCadastro">
 
 			<!-- Titulo da página -->
 			<h1 id="titulo-pe-pagina">#{cadastroPedidoBean.editando ? 'Novo Pedido' : 'Edição de Pedido'}</h1>
@@ -34,7 +34,7 @@
 			<!-- TabView com com dados do pedido -->
 			<p:tabView styleClass="painel-pe">
 				<p:tab title="Itens">
-					<!--  	<ui:include src="/WEB-INF/Template/pedidos/ItensPedido.xhtml"></ui:include> -->
+					<ui:include src="/WEB-INF/Template/pedidos/ItensPedido.xhtml"></ui:include>
 				</p:tab>
 				<p:tab title="Dados da Entrega">
 					<ui:include

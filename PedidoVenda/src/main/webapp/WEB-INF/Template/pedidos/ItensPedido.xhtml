@@ -5,32 +5,63 @@
 	xmlns:f="http://java.sun.com/jsf/core">
 
 
-	<p:dataTable value="#{cadastroPedidoBean.itens}" var="item"
+	<p:dataTable value="#{cadastroPedidoBean.pedido.itens}" var="item"
 		id="tabelaItens">
 
 		<p:column headerText="SKU" styleClass="colunaPECAPri">
-			<h:inputText size="8" />
+			<h:outputText value="#{item.produto.sku}"
+				rendered="#{item.produtoAssociado}"></h:outputText>
+
+			<p:inputText size="8" value="#{cadastroPedidoBean.sku}" label="SKU"
+				rendered="#{not item.produtoAssociado}">
+				<p:ajax event="change" process="@this"
+					update="tabelaItens :frmCadastro:totalPedido :frmCadastro:subTotal"
+					listener="#{cadastroPedidoBean.carregarPorSku}" />
+			</p:inputText>
 		</p:column>
 		<p:column headerText="Produto">
-			<p:autoComplete styleClass="colunaPECASeg"/>
+
+			<h:outputText value="#{item.produto.nome}"
+				rendered="#{item.produtoAssociado}" />
+
+			<p:autoComplete styleClass="colunaPECASeg"
+				value="#{cadastroPedidoBean.produtoLinhaEditavel}"
+				completeMethod="#{cadastroPedidoBean.completarProduto}"
+				var="produto" itemLabel="#{produto.nome}" itemValue="#{produto}"
+				forceSelection="true" rendered="#{not item.produtoAssociado}">
+				<p:ajax event="itemSelect"
+					update="tabelaItens :frmCadastro:totalPedido :frmCadastro:subTotal"
+					listener="#{cadastroPedidoBean.carregarProdutoLinhaEditavel}" />
+			</p:autoComplete>
 		</p:column>
 		<p:column headerText="Valor Unitário" styleClass="colunaPECATer">
-			<h:outputText value="RS 0,00" />
+			<h:outputText value="#{item.valorUnitario}">
+				<f:convertNumber type="currency" />
+			</h:outputText>
 		</p:column>
 		<p:column headerText="Quantidade" styleClass="colunaPECAQua">
-			<h:inputText size="2" value="1" />
+			<p:inputText size="2" value="#{item.quantidade}" />
 		</p:column>
 		<p:column headerText="Estoque" styleClass="colunaPECAQua">
-			<h:outputText value="0" />
+			<h:outputText value="#{item.produto.quantidadeEstoque}" />
 		</p:column>
 		<p:column headerText="Valor Total" styleClass="colunaPECASex">
-			<h:outputText value="R$ 0,00" />
+			<h:outputText value="#{item.valorTotal}">
+				<f:convertNumber type="currency" />
+			</h:outputText>
 		</p:column>
 
 		<p:columnGroup type="footer">
 			<p:row>
-				<p:column colspan="5" footerText="SubTotal" style="text-align: right"/>
-				<p:column footerText="R$ 0,00"  style="text-align: right"/>
+				<p:column colspan="5" footerText="SubTotal"
+					style="text-align: right" />
+				<p:column style="text-align: right">
+					<f:facet name="footer">
+						<h:outputText value="#{cadastroPedidoBean.pedido.valorSubTotal}">
+							<f:convertNumber type="currency" />
+						</h:outputText>
+					</f:facet>
+				</p:column>
 			</p:row>
 
 		</p:columnGroup>

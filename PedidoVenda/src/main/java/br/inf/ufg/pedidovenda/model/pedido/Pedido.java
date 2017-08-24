@@ -25,6 +25,7 @@ import javax.validation.constraints.NotNull;
 
 import br.inf.ufg.pedidovenda.model.Usuario;
 import br.inf.ufg.pedidovenda.model.cliente.Cliente;
+import br.inf.ufg.pedidovenda.model.produto.Produto;
 
 @Entity
 @Table(name = "pedido")
@@ -216,27 +217,51 @@ public class Pedido implements Serializable {
 		return true;
 	}
 
+	
+	// ----------------------------------------------------------------------------------------
 	@Transient
 	public BigDecimal getValorSubTotal() {
-		
+
 		return this.getValorTotal().subtract(getValorFrete()).add(getValorDesconto());
 	}
-	
+
 	public void recalcularValorTotal() {
 		BigDecimal total = BigDecimal.ZERO;
-		
+
 		total = total.add(getValorFrete());
 		total = total.subtract(getValorDesconto());
-		
-		for (ItemPedido item: this.getItens()) {
-			
+
+		for (ItemPedido item : this.getItens()) {
+
 			if (item.getProduto() != null && item.getProduto().getId() != null) {
-				
+
 				total = total.add(item.getValorTotal());
 			}
 		}
-		
+
 		this.setValorTotal(total);
 	}
+
+	public void adicionarItemVazio() {
+
+		if (this.isOrcamento()) {
+
+			Produto produto = new Produto();
+		
+			ItemPedido itemPedido = new ItemPedido();
+			itemPedido.setQuantidade(1);
+			itemPedido.setProduto(produto);
+			itemPedido.setPedido(this);
+
+			this.getItens().add(0, itemPedido);
+
+		}
+	}
+	
+	@Transient
+	private boolean isOrcamento() {
+		return StatusPedido.ORCAMENTO.equals(this.getStatus());
+	}
+	
 
 }
