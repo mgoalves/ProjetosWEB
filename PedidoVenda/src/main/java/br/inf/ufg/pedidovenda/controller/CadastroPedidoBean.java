@@ -60,9 +60,18 @@ public class CadastroPedidoBean implements Serializable {
 
 	public void salvar() {
 
-		this.pedido = this.cadService.salvar(this.pedido);
-		limpar();
-		FacesUtil.addInfoMessage("Pedido salvo com sucesso.");
+		this.pedido.removerItemVazio();
+		
+		try {
+			
+			this.pedido = this.cadService.salvar(this.pedido);
+			FacesUtil.addInfoMessage("Pedido salvo com sucesso.");
+			
+		} finally {
+			
+			this.pedido.adicionarItemVazio();
+		}
+		
 	}
 
 	public void inicializar() {
@@ -154,6 +163,18 @@ public class CadastroPedidoBean implements Serializable {
 			this.produtoLinhaEditavel = this.produtos.porSku(this.sku);
 			this.carregarProdutoLinhaEditavel();
 		}
+	}
+	
+	public void atualizarQuantidade(ItemPedido item, int linha) {
+		if (item.getQuantidade() < 1) {
+			if (linha == 0) {
+				item.setQuantidade(1);
+			} else {
+				this.getPedido().getItens().remove(linha);
+			}
+		}
+		
+		this.pedido.recalcularValorTotal();
 	}
 
 	// Getter and Setters

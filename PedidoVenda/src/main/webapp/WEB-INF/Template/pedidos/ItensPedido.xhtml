@@ -6,7 +6,7 @@
 
 
 	<p:dataTable value="#{cadastroPedidoBean.pedido.itens}" var="item"
-		id="tabelaItens">
+		rowIndexVar="linha" id="tabelaItens">
 
 		<p:column headerText="SKU" styleClass="colunaPECAPri">
 			<h:outputText value="#{item.produto.sku}"
@@ -40,7 +40,11 @@
 			</h:outputText>
 		</p:column>
 		<p:column headerText="Quantidade" styleClass="colunaPECAQua">
-			<p:inputText size="2" value="#{item.quantidade}" />
+			<p:inputText size="2" value="#{item.quantidade}">
+				<p:ajax event="change" process="@this"
+					update="tabelaItens :frmCadastro:totalPedido :frmCadastro:subTotal"
+					listener="#{cadastroPedidoBean.atualizarQuantidade(item, linha)}" />
+			</p:inputText>
 		</p:column>
 		<p:column headerText="Estoque" styleClass="colunaPECAQua">
 			<h:outputText value="#{item.produto.quantidadeEstoque}" />
