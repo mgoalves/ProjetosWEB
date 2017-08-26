@@ -1,6 +1,5 @@
 package br.inf.ufg.pedidovenda.model.pedido;
 
-
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -26,9 +25,9 @@ public class ItemPedido implements Serializable {
 	private BigDecimal valorUnitario = BigDecimal.ZERO;
 	private Produto produto;
 	private Pedido pedido;
-	
-	
-	// Getters and Setters ===============================================================
+
+	// Getters and Setters
+	// ===============================================================
 	@Id
 	@GeneratedValue
 	public Long getId() {
@@ -77,8 +76,9 @@ public class ItemPedido implements Serializable {
 		this.pedido = pedido;
 	}
 
-	// Hash and Code ===============================================================
-	
+	// Hash and Code
+	// ===============================================================
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -103,19 +103,32 @@ public class ItemPedido implements Serializable {
 			return false;
 		return true;
 	}
-	
-	// Metodos Aux ==========================================================================
+
+	// Metodos Aux
+	// ==========================================================================
 
 	@Transient
 	public BigDecimal getValorTotal() {
 
 		return this.getValorUnitario().multiply(new BigDecimal(this.getQuantidade()));
 	}
-	
+
 	@Transient
 	public boolean isProdutoAssociado() {
-		
+
 		return this.getProduto() != null && this.getProduto().getId() != null;
 	}
-}
 
+	@Transient
+	public boolean isEstoqueSuficiente() {
+
+		return this.getPedido().isEmitido() || this.produto.getId() == null || 
+				this.getProduto().getQuantidadeEstoque() >= this.getQuantidade();
+	}
+
+	@Transient
+	public boolean isEstoqueInsuficiente() {
+
+		return !isEstoqueSuficiente();
+	}
+}

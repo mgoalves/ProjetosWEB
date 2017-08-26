@@ -3,6 +3,7 @@ package br.inf.ufg.pedidovenda.controller;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.enterprise.inject.Produces;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -21,6 +22,7 @@ import br.inf.ufg.pedidovenda.repository.Produtos;
 import br.inf.ufg.pedidovenda.repository.Usuarios;
 import br.inf.ufg.pedidovenda.service.CadastroPedidoService;
 import br.inf.ufg.pedidovenda.util.jsf.FacesUtil;
+import br.inf.ufg.pedidovenda.validation.PedidoEdicao;
 import br.inf.ufg.pedidovenda.validation.SKU;
 
 @Named
@@ -29,7 +31,7 @@ public class CadastroPedidoBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	// Injeções
+	// Injeções ========================================================
 	@Inject
 	private Usuarios usuarios;
 	@Inject
@@ -39,7 +41,9 @@ public class CadastroPedidoBean implements Serializable {
 	@Inject
 	private Produtos produtos;
 
-	// Variaveis
+	// Variaveis ---------------------------------------------------------
+	@Produces
+	@PedidoEdicao
 	private Pedido pedido;
 	private List<Usuario> vendedores;
 	private Produto produtoLinhaEditavel;

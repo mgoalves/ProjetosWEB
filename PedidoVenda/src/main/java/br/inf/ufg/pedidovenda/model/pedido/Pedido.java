@@ -279,6 +279,24 @@ public class Pedido implements Serializable {
 
 		return this.getValorTotal().compareTo(BigDecimal.ZERO) < 0;
 	}
+
+	@Transient
+	public boolean isEmitido() {
+		
+		return StatusPedido.EMITIDO.equals(this.getStatus());
+	}
+
+	@Transient
+	public boolean isNaoEmissivel() {
+		
+		return !this.isEmissivel();
+	}
+
+	@Transient
+	private boolean isEmissivel() {
+		
+		return this.isExistente() && this.isOrcamento();
+	}
 	
 
 }

@@ -24,11 +24,12 @@
 			<h:outputText value="#{item.produto.nome}"
 				rendered="#{item.produtoAssociado}" />
 
-			<p:autoComplete styleClass="colunaPECASeg"
+			<p:autoComplete styleClass="produto-tabela"
 				value="#{cadastroPedidoBean.produtoLinhaEditavel}"
 				completeMethod="#{cadastroPedidoBean.completarProduto}"
 				var="produto" itemLabel="#{produto.nome}" itemValue="#{produto}"
-				forceSelection="true" rendered="#{not item.produtoAssociado}">
+				forceSelection="true" rendered="#{not item.produtoAssociado}"
+				dropdown="true" id="colunaProduto">
 				<p:ajax event="itemSelect"
 					update="tabelaItens :frmCadastro:totalPedido :frmCadastro:subTotal"
 					listener="#{cadastroPedidoBean.carregarProdutoLinhaEditavel}" />
@@ -46,8 +47,18 @@
 					listener="#{cadastroPedidoBean.atualizarQuantidade(item, linha)}" />
 			</p:inputText>
 		</p:column>
+
 		<p:column headerText="Estoque" styleClass="colunaPECAQua">
-			<h:outputText value="#{item.produto.quantidadeEstoque}" />
+			<h:outputText value="#{item.produto.quantidadeEstoque}"
+				style="#{item.estoqueInsuficiente ? 'color: red' : ''}" />
+
+			<h:graphicImage library="images" name="alerta.png" id="semEstoque"
+				style="vertical-align: bottom; margin-left: 5px"
+				rendered="#{item.estoqueInsuficiente}" />
+
+			<p:tooltip for="semEstoque" value="Estoque Insuficiente"
+				rendered="#{item.estoqueInsuficiente}" />
+
 		</p:column>
 		<p:column headerText="Valor Total" styleClass="colunaPECASex">
 			<h:outputText value="#{item.valorTotal}">
