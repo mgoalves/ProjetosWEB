@@ -249,7 +249,6 @@ public class Pedido implements Serializable {
 			Produto produto = new Produto();
 		
 			ItemPedido itemPedido = new ItemPedido();
-			itemPedido.setQuantidade(1);
 			itemPedido.setProduto(produto);
 			itemPedido.setPedido(this);
 
@@ -293,7 +292,7 @@ public class Pedido implements Serializable {
 	}
 
 	@Transient
-	private boolean isEmissivel() {
+	public boolean isEmissivel() {
 		
 		return this.isExistente() && this.isOrcamento();
 	}

@@ -3,6 +3,7 @@ package br.inf.ufg.pedidovenda.controller;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.enterprise.event.Observes;
 import javax.enterprise.inject.Produces;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
@@ -45,6 +46,7 @@ public class CadastroPedidoBean implements Serializable {
 	@Produces
 	@PedidoEdicao
 	private Pedido pedido;
+	
 	private List<Usuario> vendedores;
 	private Produto produtoLinhaEditavel;
 	private String sku;
@@ -60,6 +62,11 @@ public class CadastroPedidoBean implements Serializable {
 		pedido = new Pedido();
 		pedido.setEnderecoEntrega(new EnderecoEntrega());
 		sku = null;
+	}
+	
+	public void pedidoAlterado(@Observes PedidoAlteradoEvent event) {
+		
+		this.pedido = event.getPedido();
 	}
 
 	public void salvar() {

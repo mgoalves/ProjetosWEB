@@ -17,11 +17,11 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
 
+import br.inf.ufg.pedidovenda.service.NegocioException;
 import br.inf.ufg.pedidovenda.validation.SKU;
 
-
 @Entity
-@Table(name="produto")
+@Table(name = "produto")
 public class Produto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -33,68 +33,74 @@ public class Produto implements Serializable {
 	private Integer quantidadeEstoque;
 	private Categoria categoria;
 
-	
-	
-	//Getters and Setters -----------------------------------
+	// Getters and Setters -----------------------------------
 	@Id
 	@GeneratedValue
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
-	@NotBlank 
+
+	@NotBlank
 	@Size(max = 80)
 	@Column(nullable = false, length = 60)
 	public String getNome() {
 		return nome;
 	}
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
-	
-	@NotBlank @Size(max = 20) @SKU
+
+	@NotBlank
+	@Size(max = 20)
+	@SKU
 	@Column(nullable = false, length = 20, unique = true)
 	public String getSku() {
 		return sku;
 	}
+
 	public void setSku(String sku) {
 		this.sku = sku == null ? null : sku.toUpperCase();
 	}
-	
+
 	@NotNull(message = "é obrigatório")
-	@Column(name="valor_unitario", nullable = false, precision = 10, scale = 2)
+	@Column(name = "valor_unitario", nullable = false, precision = 10, scale = 2)
 	public BigDecimal getValorUnitario() {
 		return valorUnitario;
 	}
+
 	public void setValorUnitario(BigDecimal valorUnitario) {
 		this.valorUnitario = valorUnitario;
 	}
-	
-	@NotNull @Min(0) @Max(9999)
-	@Column(name="quantidade_estoque", nullable = false, length = 5)
+
+	@NotNull
+	@Min(0)
+	@Max(9999)
+	@Column(name = "quantidade_estoque", nullable = false, length = 5)
 	public Integer getQuantidadeEstoque() {
 		return quantidadeEstoque;
 	}
+
 	public void setQuantidadeEstoque(Integer quantidadeEstoque) {
 		this.quantidadeEstoque = quantidadeEstoque;
 	}
-	
+
 	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "categoria_id", nullable = false)
 	public Categoria getCategoria() {
 		return categoria;
 	}
+
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
 
-	
-	//Hash and Equals ------------------------------------
+	// Hash and Equals ------------------------------------
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -118,6 +124,19 @@ public class Produto implements Serializable {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	public void baixarEstoque(Integer quantidade) {
+
+		int novaQuantidade = this.getQuantidadeEstoque() - quantidade;
+
+		if (novaQuantidade < 0) {
+
+			throw new NegocioException("Não existe estoque suficiente do produto: " + this.getNome()
+					+ ", da quantidade: " + quantidade + ".");
+		}
+
+		this.setQuantidadeEstoque(novaQuantidade);
 	}
 
 }
