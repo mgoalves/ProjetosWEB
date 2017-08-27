@@ -24,7 +24,8 @@
 
 		<p:outputLabel value="Vendedor" for="vendedor" />
 		<p:selectOneMenu id="vendedor"
-			value="#{cadastroPedidoBean.pedido.vendedor}">
+			value="#{cadastroPedidoBean.pedido.vendedor}"
+			disabled="#{cadastroPedidoBean.pedido.naoAlteravel}">
 			<f:selectItem itemLabel="Selecione" />
 			<f:selectItems value="#{cadastroPedidoBean.vendedores}"
 				var="vendedor" itemValue="#{vendedor}" itemLabel="#{vendedor.nome}" />
@@ -35,11 +36,13 @@
 			value="#{cadastroPedidoBean.pedido.cliente}"
 			completeMethod="#{cadastroPedidoBean.completarCliente}" var="cliente"
 			itemLabel="#{cliente.nome}" itemValue="#{cliente}"
-			forceSelection="true" />
+			forceSelection="true"
+			disabled="#{cadastroPedidoBean.pedido.naoAlteravel}" />
 
 		<p:outputLabel value="Forma de Pagamento" for="formaPagamento" />
 		<p:selectOneMenu id="formaPagamento"
-			value="#{cadastroPedidoBean.pedido.formaPagamento}">
+			value="#{cadastroPedidoBean.pedido.formaPagamento}"
+			disabled="#{cadastroPedidoBean.pedido.naoAlteravel}">
 			<f:selectItem itemLabel="Selecione" />
 			<f:selectItems value="#{cadastroPedidoBean.formasPagamento}"
 				var="formaPagamento" itemLabel="#{formaPagamento.descricao}"
@@ -48,9 +51,9 @@
 
 		<p:outputLabel value="Valor do Frete" for="valorFrete" />
 		<p:inputText id="valorFrete" size="10" maxlength="10"
-			styleClass="moeda" value="#{cadastroPedidoBean.pedido.valorFrete}">
+			styleClass="moeda" value="#{cadastroPedidoBean.pedido.valorFrete}"
+			disabled="#{cadastroPedidoBean.pedido.naoAlteravel}">
 			<f:convertNumber maxFractionDigits="2" minFractionDigits="2" />
-
 			<p:ajax event="change" process="@this" update="totalPedido"
 				listener="#{cadastroPedidoBean.recalcularPedido}" />
 		</p:inputText>
@@ -63,9 +66,10 @@
 
 		<p:outputLabel value="Valor do Desconto" for="valorDesconto" />
 		<p:inputText id="valorDesconto" size="10" maxlength="10"
-			styleClass="moeda" value="#{cadastroPedidoBean.pedido.valorDesconto}">
+			styleClass="moeda" value="#{cadastroPedidoBean.pedido.valorDesconto}"
+			disabled="#{cadastroPedidoBean.pedido.naoAlteravel}">
 			<f:convertNumber maxFractionDigits="2" minFractionDigits="2" />
-			
+
 			<p:ajax event="change" process="@this" update="totalPedido"
 				listener="#{cadastroPedidoBean.recalcularPedido}" />
 		</p:inputText>

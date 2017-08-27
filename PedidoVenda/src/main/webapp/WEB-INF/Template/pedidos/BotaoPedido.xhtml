@@ -8,16 +8,17 @@
 		<p:toolbarGroup>
 			<p:button value="Novo" />
 			<p:commandButton id="btnSalvarPedidos" value="Salvar"
-				action="#{cadastroPedidoBean.salvar}" update="@form" />
+				action="#{cadastroPedidoBean.salvar}" update="@form"
+				disabled="#{cadastroPedidoBean.pedido.naoAlteravel}" />
 		</p:toolbarGroup>
 
 		<p:toolbarGroup align="right">
 			<p:commandButton value="Emitir"
 				action="#{emissaoPedidoBean.emitirPedido}" process="@form"
-				update="@form" />
+				update="@form" disabled="#{cadastroPedidoBean.pedido.naoEmissivel}"/>
 			<p:commandButton value="Cancelar"
 				action="#{cancelamentoPedidoBean.cancelarPedido}" process="@this"
-				update="@form" />
+				update="@form" disabled="#{cadastroPedidoBean.pedido.naoCancelavel}"/>
 			<p:commandButton value="Enviar por e-mail" />
 
 			<p:separator />

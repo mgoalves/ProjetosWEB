@@ -10,34 +10,41 @@
 
 		<p:outputLabel value="Data da Entrega" for="dataEntrega" />
 		<p:calendar id="dataEntrega" size="10" pattern="dd/MM/yyyy"
-			value="#{cadastroPedidoBean.pedido.dataEntrega}" />
+			value="#{cadastroPedidoBean.pedido.dataEntrega}"
+			disabled="#{cadastroPedidoBean.pedido.naoAlteravel}" />
 
 		<p:spacer />
 		<p:spacer />
 
 		<p:outputLabel value="Logradouro" for="logradouro" />
 		<p:inputText id="logradouro" size="50" maxlength="100"
-			value="#{cadastroPedidoBean.pedido.enderecoEntrega.logradouro}" />
+			value="#{cadastroPedidoBean.pedido.enderecoEntrega.logradouro}"
+			disabled="#{cadastroPedidoBean.pedido.naoAlteravel}" />
 
 		<p:outputLabel value="Número" for="numero" />
 		<p:inputText id="numero" size="5" maxlength="10"
-			value="#{cadastroPedidoBean.pedido.enderecoEntrega.numero}" />
+			value="#{cadastroPedidoBean.pedido.enderecoEntrega.numero}"
+			disabled="#{cadastroPedidoBean.pedido.naoAlteravel}" />
 
 		<p:outputLabel value="Complemento" for="complemento" />
 		<p:inputText id="complemento" size="50" maxlength="100"
-			value="#{cadastroPedidoBean.pedido.enderecoEntrega.complemento}" />
+			value="#{cadastroPedidoBean.pedido.enderecoEntrega.complemento}"
+			disabled="#{cadastroPedidoBean.pedido.naoAlteravel}" />
 
 		<p:outputLabel value="Cidade" for="cidade" />
 		<p:inputText id="cidade" size="40" maxlength="60"
-			value="#{cadastroPedidoBean.pedido.enderecoEntrega.cidade}" />
+			value="#{cadastroPedidoBean.pedido.enderecoEntrega.cidade}"
+			disabled="#{cadastroPedidoBean.pedido.naoAlteravel}" />
 
 		<p:outputLabel value="Estado" for="estado" />
 		<p:inputText id="estado" size="40" maxlength="60"
-			value="#{cadastroPedidoBean.pedido.enderecoEntrega.uf}" />
+			value="#{cadastroPedidoBean.pedido.enderecoEntrega.uf}"
+			disabled="#{cadastroPedidoBean.pedido.naoAlteravel}" />
 
 		<p:outputLabel value="CEP" for="cep" />
 		<p:inputText id="cep" size="10" maxlength="10"
-			value="#{cadastroPedidoBean.pedido.enderecoEntrega.cep}" />
+			value="#{cadastroPedidoBean.pedido.enderecoEntrega.cep}"
+			disabled="#{cadastroPedidoBean.pedido.naoAlteravel}" />
 
 	</h:panelGrid>
 
