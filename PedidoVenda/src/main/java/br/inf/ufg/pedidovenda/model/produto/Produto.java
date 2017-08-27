@@ -139,4 +139,9 @@ public class Produto implements Serializable {
 		this.setQuantidadeEstoque(novaQuantidade);
 	}
 
+	public void retornaEstoque(Integer quantidade) {
+		
+		this.setQuantidadeEstoque(getQuantidadeEstoque() + quantidade);
+	}
+
 }

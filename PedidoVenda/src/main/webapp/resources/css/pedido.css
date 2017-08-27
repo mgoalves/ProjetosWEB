@@ -77,7 +77,11 @@
 /*Não Funciona*/
 .produto-tabela input{
 	
-	width: 95%;
+	width: 90%;
+}
+.ui-autocomplete-input ui-inputfield ui-widget ui-state-default ui-corner-left {
+	
+	width: 90%;
 }
 
 .colunaPECATer {

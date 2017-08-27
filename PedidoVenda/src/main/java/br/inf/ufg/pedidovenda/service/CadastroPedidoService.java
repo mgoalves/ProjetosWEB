@@ -13,33 +13,39 @@ import br.inf.ufg.pedidovenda.util.jpa.Transactional;
 public class CadastroPedidoService implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Inject
 	private Pedidos pedidos;
 
 	@Transactional
 	public Pedido salvar(Pedido pedido) {
-		
+
 		if (pedido.isNovo()) {
-			
+
 			pedido.setDataCriacao(new Date());
 			pedido.setStatus(StatusPedido.ORCAMENTO);
 		}
-		
+
 		pedido.recalcularValorTotal();
-		
-		if(pedido.getItens().isEmpty()) {
-			
+
+		if (pedido.isNaoAlteravel()) {
+
+			throw new NegocioException("Pedido não pode ser alterado com status " 
+								+ pedido.getStatus().getDescricao() + ".");
+		}
+
+		if (pedido.getItens().isEmpty()) {
+
 			throw new NegocioException("O pedido deve possuir pelo menos um item.");
 		}
-		
-		if(pedido.isValorTotalNegativo()){
-			
+
+		if (pedido.isValorTotalNegativo()) {
+
 			throw new NegocioException("Valor Total não pode ser negativo.");
 		}
-		
+
 		pedido = this.pedidos.guardar(pedido);
 		return pedido;
 	}
-	
+
 }

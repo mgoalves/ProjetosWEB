@@ -47,6 +47,8 @@ public class Pedido implements Serializable {
 	private EnderecoEntrega enderecoEntrega;
 	private List<ItemPedido> itens = new ArrayList<>();
 
+	
+	//Getters And Setters ======================================================================
 	@Id
 	@GeneratedValue
 	public Long getId() {
@@ -295,6 +297,35 @@ public class Pedido implements Serializable {
 	public boolean isEmissivel() {
 		
 		return this.isExistente() && this.isOrcamento();
+	}
+
+	@Transient
+	public boolean isNaoCancelavel() {
+		return !isCancelavel();
+	}
+
+	@Transient
+	public boolean isCancelavel() {
+		
+		return this.isExistente() && !this.isCancelado();
+	}
+
+	@Transient
+	private boolean isCancelado() {
+
+		return StatusPedido.CANCELADO.equals(this.getStatus());
+	}
+
+	@Transient
+	public boolean isNaoAlteravel() {
+		
+		return !this.isAlteravel();
+	}
+
+	@Transient
+	private boolean isAlteravel() {
+		
+		return this.isOrcamento();
 	}
 	
 

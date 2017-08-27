@@ -16,7 +16,7 @@
 				action="#{emissaoPedidoBean.emitirPedido}" process="@form"
 				update="@form" />
 			<p:commandButton value="Cancelar"
-				action="{cancelamentoPedidoBean.cancelarPedido}" process="@this"
+				action="#{cancelamentoPedidoBean.cancelarPedido}" process="@this"
 				update="@form" />
 			<p:commandButton value="Enviar por e-mail" />
 
