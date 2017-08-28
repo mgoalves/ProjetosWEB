@@ -19,11 +19,13 @@ public class MailConfigProducer {
 		
 		
 		//Configuração para ambiente de desenvovimento
-		props.load(getClass().getResourceAsStream("../../../../../ProjetosWEB/mail.properties"));
+		//props.load(getClass().getResourceAsStream("../../../../../ProjetosWEB/mail.properties"));
+		
 		/**
 		 * Configuração para quando em produção
-		 * props.load(getClass().getResourceAsStream("/mail.properties"));
 		 */
+		 props.load(getClass().getResourceAsStream("/mail.properties"));
+		 
 		
 		SimpleMailConfig config =  new SimpleMailConfig();
 		
