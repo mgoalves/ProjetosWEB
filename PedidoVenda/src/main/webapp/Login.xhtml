@@ -5,8 +5,8 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core">
-	
-<!-- Cabeçalho do html -->	
+
+<!-- Cabeçalho do html -->
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Login</title>
@@ -22,20 +22,30 @@
 -->
 <h:body>
 
+	<f:metadata>
+		<f:viewParam name="dummy" />
+		<f:event listener="#{loginBean.preRender}" type="preRenderView" />
+	</f:metadata>
+
+	<p:messages autoUpdate="true" id="messages" closable="true" />
+
 	<div id="login-dialog">
 		<h1>Login</h1>
 
-		<h:form>
+		<h:form id="frm" prependId="false">
+
 			<h:panelGrid columns="2" styleClass="grid-login">
 
-				<p:outputLabel value="E-mail:" for="email" />
-				<p:inputText id="email" size="25" value="" maxlength="30"/>
+				<p:outputLabel value="E-mail" />
+				<p:inputText id="j_username" size="25" value="#{loginBean.email}"
+					maxlength="30" required="true" />
 
-				<p:outputLabel value="Senha:" for="senha" />
-				<p:password id="senha" size="25"  maxlength="30"/>
+				<p:outputLabel value="Senha" />
+				<p:password id="j_password" size="25" maxlength="30" required="true" />
 
-				<h:panelGroup/>
-				<p:commandButton value="Login" />
+				<h:panelGroup />
+				<p:commandButton value="Login" action="#{loginBean.login}"
+					ajax="false" />
 			</h:panelGrid>
 		</h:form>
 	</div>
