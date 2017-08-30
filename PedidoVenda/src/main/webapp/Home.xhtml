@@ -4,12 +4,27 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core">
-	
+
+	<f:metadata>
+		<f:viewParam name="dummy"></f:viewParam>
+		<f:event listener="#{graficosPedidosCriadosBean.preRender}"
+			type="preRenderView" />
+	</f:metadata>
+
+
+
 	<ui:define name="titulo">Dashboard</ui:define>
-	
+
 	<ui:define name="corpo">
-		<br/><br/><br/>Welcome<br/><br/><br/>
+
+		<div>
+
+			<p:lineChart value="#{graficosPedidosCriadosBean.model}"
+				title="Pedidos Criados" animeted="true" minY="0" legendPosition="e"/>
+
+		</div>
+
 	</ui:define>
-	
-	
+
+
 </ui:composition>
