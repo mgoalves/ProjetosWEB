@@ -138,7 +138,8 @@ public class Pedidos implements Serializable {
 	}
 
 	private Map<Date, BigDecimal> criarMapaVazio(Integer numeroDeDias,
-			Calendar dataInicial) {
+														Calendar dataInicial) {
+		
 		dataInicial = (Calendar) dataInicial.clone();
 		Map<Date, BigDecimal> mapaInicial = new TreeMap<>();
 
